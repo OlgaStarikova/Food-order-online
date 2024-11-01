@@ -12,12 +12,12 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/06-insert-user-role-table.yml
   - include:
-      file: db/changelog/changes/07-create-ingreds-table.yml
+      file: db/changelog/changes/07-create-ingredcategories-table.yml
   - include:
-      file: db/changelog/changes/08-create-dishes-table.yml
+      file: db/changelog/changes/08-create-ingreds-table.yml
   - include:
-      file: db/changelog/changes/09-create-dishes-ingreds-table.yml
-  - include :
-      file: db/changelog/changes/10-create-orders-table.yml
+      file: db/changelog/changes/09-create-categories-table.yml
   - include:
-      file: db/changelog/changes/11-create-orders-ingreds-table.yml
+      file: db/changelog/changes/10-create-dishes-table.yml
+  - include:
+      file: db/changelog/changes/11-create-dishes-ingreds-table.yml

@@ -11,8 +11,12 @@ import lombok.experimental.Accessors;
 public class IngredDto {
     private String name;
     private String measure;
-    private int quantity;
     private BigDecimal price;
     private String description;
     private String coverImage;
+    private int calories;
+    private int proteins;
+    private int fats;
+    private int carbogydrates;
+    private Long ingredcategoryId;
 }

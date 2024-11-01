@@ -4,30 +4,24 @@ import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CreateIngredRequestDto;
 import com.service.foodorderonline.dto.IngredDto;
 import com.service.foodorderonline.model.Ingred;
-import org.mapstruct.AfterMapping;
+import java.util.List;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MapperConfig.class, uses = IngredCategoryMapper.class)
 public interface IngredMapper {
-    IngredDto toDto(Ingred category);
+    @Mapping(source = "ingredCategory.id", target = "ingredcategoryId")
+    IngredDto toDto(Ingred ingred);
 
+    @Mapping(source = "ingredcategoryId", target = "ingredCategory",
+            qualifiedByName = "ingredCategoryById")
     Ingred toModel(CreateIngredRequestDto createIngredRequestDto);
+
+    @Mapping(source = "ingredCategory.id", target = "ingredcategoryId")
+    @Mapping(source = "ingred.id", target = "ingredId")
+    List<IngredDto> toDtos(List<Ingred> ingreds);
 
     void updateIngredFromDto(CreateIngredRequestDto ingredDto,
                              @MappingTarget Ingred ingred);
-
-    @AfterMapping
-    default void setMeasure(@MappingTarget Ingred ingred,CreateIngredRequestDto requestDto) {
-        if (requestDto.getMeasure() != null) {
-            ingred.setMeasure(Ingred.UnitOfMeasure.valueOf(requestDto.getMeasure()));
-        }
-    }
-
-    @AfterMapping
-    default void setMeasureValue(@MappingTarget IngredDto ingredDto,Ingred ingred) {
-        if (ingred.getMeasure() != null) {
-            ingredDto.setMeasure(ingred.getMeasure().getUnit());
-        }
-    }
 }

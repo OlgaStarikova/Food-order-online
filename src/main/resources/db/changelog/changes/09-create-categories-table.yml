@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-ingreds-table
+      id: create-categories-table
       author: Olya Starykova
       changes:
         - createTable:
-            tableName: ingreds
+            tableName: categories
             columns:
               - column:
                   name: id
@@ -19,28 +19,18 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: measure
-                  type: enum('WEIGHT1G', 'TBSP', 'TSP', 'PCS')
-                  constraints:
-                    nullable: false
-              - column:
-                  name: quantity
-                  type: int
-                  constraints:
-                    nullable: false
-              - column:
-                  name: price
-                  type: decimal
-                  constraints:
-                    nullable: false
-              - column:
-                  name: description
-                  type: varchar(255)
+                  name: cover_image_main
+                  type: varchar(100)
                   constraints:
                     nullable: true
               - column:
-                  name: cover_image
+                  name: cover_image_addl
                   type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: description
+                  type: varchar(255)
                   constraints:
                     nullable: true
               - column:

@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-ingreds-table
+      author: Olya Starykova
+      changes:
+        - createTable:
+            tableName: ingreds
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: measure
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cover_image
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calories
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: proteins
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: fats
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: carbogydrates
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ingredcategory_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_ingreds_ingredcategories
+                    referencedTableName: ingredcategories
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false

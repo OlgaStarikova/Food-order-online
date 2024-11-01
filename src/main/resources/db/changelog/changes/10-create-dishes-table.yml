@@ -24,10 +24,20 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: baseprice
+                  name: pricelittle
                   type: decimal
                   constraints:
-                    nullable: false
+                    nullable: true
+              - column:
+                  name: pricemiddle
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pricelarge
+                  type: decimal
+                  constraints:
+                    nullable: true
               - column:
                   name: description
                   type: varchar(255)
@@ -38,6 +48,14 @@ databaseChangeLog:
                   type: varchar(100)
                   constraints:
                     nullable: true
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_dishes_categories
+                    referencedTableName: categories
+                    referencedColumnNames: id
+                    nullable: false
               - column:
                   name: is_deleted
                   type: boolean

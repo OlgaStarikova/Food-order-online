@@ -3,23 +3,25 @@ package com.service.foodorderonline.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.util.Set;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class CreateIngredRequestDto {
+public class CreateDishRequestDto {
     @NotBlank
     private String name;
-    @NotBlank
-    private String measure;
     @Min(0)
-    private BigDecimal price;
+    private int timecook;
+    @Min(0)
+    private BigDecimal pricelittle;
+    @Min(0)
+    private BigDecimal pricemiddle;
+    @Min(0)
+    private BigDecimal pricelarge;
     private String description;
     private String coverImage;
-    private int calories;
-    private int proteins;
-    private int fats;
-    private int carbogydrates;
-    private Long ingredcategoryId;
+    private Long categoryId;
+    private Set<Long> ingredIds;
 }
