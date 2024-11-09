@@ -2,8 +2,7 @@ package com.service.foodorderonline.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -14,14 +13,9 @@ public class CreateDishRequestDto {
     private String name;
     @Min(0)
     private int timecook;
-    @Min(0)
-    private BigDecimal pricelittle;
-    @Min(0)
-    private BigDecimal pricemiddle;
-    @Min(0)
-    private BigDecimal pricelarge;
     private String description;
     private String coverImage;
     private Long categoryId;
-    private Set<Long> ingredIds;
+    private List<Long> ingredIds;
+    private List<Long> dishSizePriceIds;
 }

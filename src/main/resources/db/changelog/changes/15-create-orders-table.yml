@@ -22,14 +22,6 @@ databaseChangeLog:
                     referencedColumnNames: id
                     nullable: false
               - column:
-                  name: dish_id
-                  type: bigint
-                  constraints:
-                    foreignKeyName: fk_orders_dishes
-                    referencedTableName: dishes
-                    referencedColumnNames: id
-                    nullable: false
-              - column:
                   name: status
                   type: enum('PENDING', 'COMPLETED', 'DELIVERED')
                   constraints:

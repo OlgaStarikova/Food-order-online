@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-orders-ingreds-table
+      id: create-order-item-ingreds-table
       author: Olya Starykova
       changes:
         - createTable:
-            tableName: orders_ingreds
+            tableName: order_item_ingreds
             columns:
               - column:
                   name: id
@@ -14,18 +14,18 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: order_id
+                  name: order_item_id
                   type: bigint
                   constraints:
-                    foreignKeyName: fk_orders_ingreds_orders
-                    referencedTableName: orders
+                    foreignKeyName: fk_order_item_ingreds_order_items
+                    referencedTableName: order_items
                     referencedColumnNames: id
                     nullable: false
               - column:
                   name: ingred_id
                   type: bigint
                   constraints:
-                    foreignKeyName: fk_orders_ingreds_ingreds
+                    foreignKeyName: fk_order_item_ingreds_ingreds
                     referencedTableName: ingreds
                     referencedColumnNames: id
                     nullable: false

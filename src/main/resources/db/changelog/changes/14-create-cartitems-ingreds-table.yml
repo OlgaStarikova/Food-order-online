@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cart_items_ingreds-table
+      author: Olya Starykova
+      changes:
+        - createTable:
+            tableName: cart_items_ingreds
+            columns:
+              - column:
+                  name: cart_item_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_cart_items_ingreds_cartitems
+                    referencedTableName: cart_items
+                    referencedColumnNames: id
+                    unique: true
+                    uniqueConstraintName: cart_item_id-ingred_id_unique
+                    nullable: false
+              - column:
+                  name: ingred_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_cart_item_ingreds_ingreds
+                    referencedTableName: ingreds
+                    referencedColumnNames: id
+                    unique: true
+                    uniqueConstraintName: cart_item_id-ingred_id_unique
+                    nullable: false

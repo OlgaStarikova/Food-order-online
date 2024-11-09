@@ -21,3 +21,21 @@ databaseChangeLog:
       file: db/changelog/changes/10-create-dishes-table.yml
   - include:
       file: db/changelog/changes/11-create-dishes-ingreds-table.yml
+  - include:
+      file: db/changelog/changes/12-create-shoppingcart-table.yml
+  - include:
+      file: db/changelog/changes/13-create-cartitems-table.yml
+  - include:
+      file: db/changelog/changes/14-create-cartitems-ingreds-table.yml
+  - include:
+      file: db/changelog/changes/15-create-orders-table.yml
+  - include:
+      file: db/changelog/changes/16-create-orderitems-table.yml
+  - include:
+      file: db/changelog/changes/17-create-orderitemsingreds-table.yml
+  - include:
+      file: db/changelog/changes/18-create-sizes-table.yml
+  - include:
+      file: db/changelog/changes/19-create-dishes-sizes-table.yml
+  - include:
+      file: db/changelog/changes/20-insert-sizes-table.yml

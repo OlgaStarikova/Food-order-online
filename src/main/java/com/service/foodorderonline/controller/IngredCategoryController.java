@@ -32,19 +32,20 @@ public class IngredCategoryController {
     private final IngredCategoryService categoryService;
 
     @PostMapping
-    @Operation(summary = "Create a new ingred category", description = "Create a new ingred "
-            + "category. Available for admins.")
+    @Operation(summary = "Create a new ingred category",
+            description = "Create a new ingred category. "
+            + "Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public IngredCategoryDto createIngredCategory(@RequestBody @Valid
-                                                  CreateIngredCategoryRequestDto requestDto) {
+                                                      CreateIngredCategoryRequestDto requestDto) {
         return categoryService.save(requestDto);
     }
 
     @GetMapping
     @Operation(summary = "Get a list of ingred categories",
             description = "Get all ingred categories."
-                    + "Params(optional): page = page number, size = count of books in one page,"
-                    + " namefield = field for sorting. Available for registered users.")
+            + "Params(optional): page = page number, size = count of books in one page,"
+            + " namefield = field for sorting. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
     public List<IngredCategoryDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
         return categoryService.findAll(pageable);
@@ -73,8 +74,7 @@ public class IngredCategoryController {
             + "Params: id = Id of the book. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public IngredCategoryDto updateIngredCategory(@PathVariable Long id,
-                                                  @RequestBody @Valid
-                                                  CreateIngredCategoryRequestDto requestDto) {
+                                  @RequestBody @Valid CreateIngredCategoryRequestDto requestDto) {
         return categoryService.update(id, requestDto);
     }
 

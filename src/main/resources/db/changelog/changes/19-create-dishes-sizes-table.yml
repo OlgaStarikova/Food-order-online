@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-dishes-sizes-prices-table
+      author: Olya Starykova
+      changes:
+        - createTable:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: dish_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_dishes_sizes_dishes
+                    referencedTableName: dishes
+                    referencedColumnNames: id
+                    unique: true
+                    uniqueConstraintName: dish_id-size_id_unique
+                    nullable: false
+              - column:
+                  name: size_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_dishes_sizes_sizes
+                    referencedTableName: sizes
+                    referencedColumnNames: id
+                    unique: true
+                    uniqueConstraintName: dish_id-size_id_unique
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false

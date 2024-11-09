@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-sizes-table
+      author: Olya Starykova
+      changes:
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: маленька
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: середня
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: велика
