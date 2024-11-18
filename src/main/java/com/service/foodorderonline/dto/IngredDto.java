@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Schema(description = "Ingredient response DTO")
 public class IngredDto {
+    private Long id;
     private String name;
     private String measure;
     private BigDecimal price;
@@ -19,4 +20,11 @@ public class IngredDto {
     private int fats;
     private int carbogydrates;
     private Long ingredcategoryId;
+
+    public IngredDto() {
+    }
+
+    public IngredDto(Long id) {
+        this.id = id;
+    }
 }

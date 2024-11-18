@@ -1,0 +1,572 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-dishes-table
+      author: Olya Starykova
+      changes:
+        - insert:
+            tableName: dishes
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Шаурма конструктор
+              - column:
+                  name: timecook
+                  value: 20
+              - column:
+                  name: cover_image
+                  value:
+              - column:
+                  name: category_id
+                  value: 1
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: size_id
+                  value: 1
+              - column:
+                  name: price
+                  value: 40
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: size_id
+                  value: 3
+              - column:
+                  name: price
+                  value: 60
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 2
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 8
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 9
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 10
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 13
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 14
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 16
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 17
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 18
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 19
+        - insert:
+            tableName: dishes
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: Шаурма класична
+              - column:
+                  name: timecook
+                  value: 15
+              - column:
+                  name: cover_image
+                  value:
+              - column:
+                  name: category_id
+                  value: 1
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: size_id
+                  value: 1
+              - column:
+                  name: price
+                  value: 60
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: size_id
+                  value: 3
+              - column:
+                  name: price
+                  value: 90
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 1
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 18
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 14
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 8
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 16
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 34
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 35
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 22
+        - insert:
+            tableName: dishes
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: Шаурма з яловичиною
+              - column:
+                  name: timecook
+                  value: 15
+              - column:
+                  name: cover_image
+                  value:
+              - column:
+                  name: category_id
+                  value: 1
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: size_id
+                  value: 1
+              - column:
+                  name: price
+                  value: 70
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: size_id
+                  value: 3
+              - column:
+                  name: price
+                  value: 100
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: ingred_id
+                  value: 1
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: ingred_id
+                  value: 18
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: ingred_id
+                  value: 36
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: ingred_id
+                  value: 21
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 3
+              - column:
+                  name: ingred_id
+                  value: 19
+        - insert:
+            tableName: dishes
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: Шаурма з криветками
+              - column:
+                  name: timecook
+                  value: 15
+              - column:
+                  name: cover_image
+                  value:
+              - column:
+                  name: category_id
+                  value: 1
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: size_id
+                  value: 1
+              - column:
+                  name: price
+                  value: 70
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: size_id
+                  value: 3
+              - column:
+                  name: price
+                  value: 100
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: ingred_id
+                  value: 1
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: ingred_id
+                  value: 18
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: ingred_id
+                  value: 37
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: ingred_id
+                  value: 20
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 4
+              - column:
+                  name: ingred_id
+                  value: 17
+        - insert:
+            tableName: dishes
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: Шаурма з ковбасками
+              - column:
+                  name: timecook
+                  value: 15
+              - column:
+                  name: cover_image
+                  value:
+              - column:
+                  name: category_id
+                  value: 1
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: size_id
+                  value: 1
+              - column:
+                  name: price
+                  value: 45
+        - insert:
+            tableName: dishes_sizes_prices
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: size_id
+                  value: 3
+              - column:
+                  name: price
+                  value: 70
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: ingred_id
+                  value: 1
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: ingred_id
+                  value: 18
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: ingred_id
+                  value: 11
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: ingred_id
+                  value: 22
+              - column:
+                  name: is_default
+                  value: 1
+        - insert:
+            tableName: dishes_ingreds
+            columns:
+              - column:
+                  name: dish_id
+                  value: 5
+              - column:
+                  name: ingred_id
+                  value: 34

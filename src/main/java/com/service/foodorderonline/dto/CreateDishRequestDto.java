@@ -16,6 +16,6 @@ public class CreateDishRequestDto {
     private String description;
     private String coverImage;
     private Long categoryId;
-    private List<Long> ingredIds;
-    private List<Long> dishSizePriceIds;
+    private List<CreateDishIngredRequestDto> createDishIngredRequestDtos;
+    private List<CreateDishSizePriceRequestDto> createDishSizePriceDtos;
 }

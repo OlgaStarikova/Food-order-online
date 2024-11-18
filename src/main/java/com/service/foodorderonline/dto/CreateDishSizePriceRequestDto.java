@@ -10,8 +10,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class CreateDishSizePriceRequestDto {
     @Positive
-    private Long dishId;
-    @Positive
     private Long sizeId;
     @Min(0)
     private BigDecimal price;

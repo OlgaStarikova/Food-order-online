@@ -32,18 +32,17 @@ public class IngredCategoryController {
     private final IngredCategoryService categoryService;
 
     @PostMapping
-    @Operation(summary = "Create a new ingred category",
-            description = "Create a new ingred category. "
+    @Operation(summary = "Create a new ingredcategory", description = "Create a new ingredcategory"
             + "Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public IngredCategoryDto createIngredCategory(@RequestBody @Valid
-                                                      CreateIngredCategoryRequestDto requestDto) {
+                                                  CreateIngredCategoryRequestDto
+                                                          requestDto) {
         return categoryService.save(requestDto);
     }
 
     @GetMapping
-    @Operation(summary = "Get a list of ingred categories",
-            description = "Get all ingred categories."
+    @Operation(summary = "Get a list of ingredcategories", description = "Get all ingredcategories"
             + "Params(optional): page = page number, size = count of books in one page,"
             + " namefield = field for sorting. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
@@ -52,8 +51,7 @@ public class IngredCategoryController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get the ingred category by Id",
-            description = "Get the ingred category by Id"
+    @Operation(summary = "Get the ingredcategory ", description = "Get the ingredcategory by Id"
             + "Params: id = Id of the category. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
     public IngredCategoryDto getIngredCategoryById(@PathVariable Long id) {
@@ -74,7 +72,8 @@ public class IngredCategoryController {
             + "Params: id = Id of the book. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public IngredCategoryDto updateIngredCategory(@PathVariable Long id,
-                                  @RequestBody @Valid CreateIngredCategoryRequestDto requestDto) {
+                                                  @RequestBody @Valid
+                                                  CreateIngredCategoryRequestDto requestDto) {
         return categoryService.update(id, requestDto);
     }
 

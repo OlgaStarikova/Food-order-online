@@ -5,7 +5,9 @@ import com.service.foodorderonline.dto.DishSizePriceDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
 import com.service.foodorderonline.mapper.DishSizePriceMapper;
 import com.service.foodorderonline.model.DishSizePrice;
+import com.service.foodorderonline.model.Size;
 import com.service.foodorderonline.repository.dish.DishSizePriceRepository;
+import com.service.foodorderonline.repository.dish.SizeRepository;
 import com.service.foodorderonline.service.DishSizePriceService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DishSizePriceServiceImpl implements DishSizePriceService {
     private final DishSizePriceRepository dishSizePriceRepository;
+    private final SizeRepository sizeRepository;
     private final DishSizePriceMapper dishSizePriceMapper;
 
     @Override
@@ -22,13 +25,16 @@ public class DishSizePriceServiceImpl implements DishSizePriceService {
         DishSizePrice dishSizePrice = dishSizePriceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find dishSizePrice by id "
                         + id));
-
         return dishSizePriceMapper.toDto(dishSizePrice);
     }
 
     @Override
     public DishSizePriceDto save(CreateDishSizePriceRequestDto requestDto) {
         DishSizePrice dishSizePrice = dishSizePriceMapper.toModel(requestDto);
+        Size size = sizeRepository.findById(requestDto.getSizeId())
+                .orElseThrow(() -> new EntityNotFoundException("Can't find Size by id "
+                        + requestDto.getSizeId()));
+        dishSizePrice.setSize(size);
         return dishSizePriceMapper.toDto(dishSizePriceRepository.save(dishSizePrice));
     }
 

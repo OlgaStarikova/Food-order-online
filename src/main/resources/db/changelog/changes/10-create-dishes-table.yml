@@ -24,21 +24,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: pricelittle
-                  type: decimal
-                  constraints:
-                    nullable: true
-              - column:
-                  name: pricemiddle
-                  type: decimal
-                  constraints:
-                    nullable: true
-              - column:
-                  name: pricelarge
-                  type: decimal
-                  constraints:
-                    nullable: true
-              - column:
                   name: description
                   type: varchar(255)
                   constraints:

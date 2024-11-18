@@ -33,7 +33,7 @@ databaseChangeLog:
                   name: quantity
                   type: int
               - column:
-                  name: price
+                  name: base_price
                   type: decimal
                   constraints:
                     nullable: false

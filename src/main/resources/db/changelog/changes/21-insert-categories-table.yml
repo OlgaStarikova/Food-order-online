@@ -1,0 +1,158 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories-table
+      author: Olya Starykova
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Шаурма
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: Піцца
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: Млинці
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: Фрі та нагетси
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: Напої
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Лаваш
+              - column:
+                  name: sortnumber
+                  value: 1
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: Тісто
+              - column:
+                  name: sortnumber
+                  value: 2
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: М'ясо
+              - column:
+                  name: sortnumber
+                  value: 3
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: Соус
+              - column:
+                  name: sortnumber
+                  value: 4
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: Входять до складу
+              - column:
+                  name: sortnumber
+                  value: 5
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: name
+                  value: Ще щось?
+              - column:
+                  name: sortnumber
+                  value: 6
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: name
+                  value: Крем
+              - column:
+                  name: sortnumber
+                  value: 7
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: name
+                  value: Фрукти
+              - column:
+                  name: sortnumber
+                  value: 8
+        - insert:
+            tableName: ingredcategories
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: name
+                  value: Топінг
+              - column:
+                  name: sortnumber
+                  value: 9

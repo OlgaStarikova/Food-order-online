@@ -15,4 +15,6 @@ public interface DishSizePriceRepository extends JpaRepository<DishSizePrice, Lo
     Optional<DishSizePrice> findById(Long id);
 
     List<DishSizePrice> findDishSizePricesByDishId(Long id);
+
+    void deleteByDishId(Long id);
 }

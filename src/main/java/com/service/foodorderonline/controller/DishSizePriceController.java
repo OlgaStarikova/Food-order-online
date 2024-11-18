@@ -21,17 +21,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "DishSizePrice management", description = "Endpoints for managing "
-        + "dish sizes and prices")
+@Tag(name = "DishSizePrice management", description = "Endpoints for managing dish sizes")
 @RequestMapping("/dishes/sizes")
 @RequiredArgsConstructor
 public class DishSizePriceController {
     private final DishSizePriceService dishSizePriceService;
 
     @PostMapping
-    @Operation(summary = "Create a new dishSizePriceient",
-            description = "Create a new dishSizePriceient. "
-                    + "Available for admins.")
+    @Operation(summary = "Create a new dishSizePrice", description = "Create a new dishSizePrice"
+            + "Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public DishSizePriceDto createDishSizePrice(@RequestBody @Valid
                                                 CreateDishSizePriceRequestDto requestDto) {
@@ -51,14 +49,14 @@ public class DishSizePriceController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete the dishSizePrice",
             description = "Delete the dishSizePrice by Id."
-                    + "Params: id = Id of the dishSizePrice. Available for admins.")
+            + "Params: id = Id of the dishSizePrice. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteDishSizePrice(@PathVariable Long id) {
         dishSizePriceService.deleteById(id);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update the dishSizePrice", description = "Update the dishSizePrice by Id"
+    @Operation(summary = "Update the dishSizePrice", description = "Update the dishSizePrice by Id."
             + "Params: id = Id of the dishSizePriceient. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public DishSizePriceDto updateDishSizePrice(@PathVariable Long id,

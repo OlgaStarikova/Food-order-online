@@ -34,4 +34,5 @@ public class Size {
     public Size(Long id) {
         this.id = id;
     }
+
 }

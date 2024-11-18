@@ -2,6 +2,7 @@ package com.service.foodorderonline.controller;
 
 import com.service.foodorderonline.dto.CreateDishRequestDto;
 import com.service.foodorderonline.dto.DishDto;
+import com.service.foodorderonline.dto.DishNiceDto;
 import com.service.foodorderonline.service.DishService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,7 +44,7 @@ public class DishController {
     @Operation(summary = "Get the dish by Id", description = "Get the dish by Id"
             + "Params: id = Id of the dish. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
-    public DishDto getDishById(@PathVariable Long id) {
+    public DishNiceDto getDishById(@PathVariable Long id) {
         return dishService.findById(id);
     }
 

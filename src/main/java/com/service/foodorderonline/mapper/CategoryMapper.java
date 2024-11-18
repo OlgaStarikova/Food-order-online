@@ -2,6 +2,7 @@ package com.service.foodorderonline.mapper;
 
 import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CategoryDto;
+import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.model.Category;
 import java.util.Optional;
@@ -12,6 +13,8 @@ import org.mapstruct.Named;
 @Mapper(config = MapperConfig.class)
 public interface CategoryMapper {
     CategoryDto toDto(Category category);
+
+    CategoryWithDishesDto toWithDishesDto(Category category);
 
     Category toModel(CreateCategoryRequestDto createCategoryRequestDto);
 

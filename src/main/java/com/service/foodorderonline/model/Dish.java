@@ -8,12 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.math.BigDecimal;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,24 +32,14 @@ public class Dish {
     @Column(nullable = false)
     private String name;
     private int timecook;
-    @Column
-    private BigDecimal pricelittle;
-    @Column
-    private BigDecimal pricemiddle;
-    @Column
-    private BigDecimal pricelarge;
     private String description;
     private String coverImage;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "category_id")
     private Category category;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "dishes_ingreds",
-            joinColumns = @JoinColumn(name = "dish_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingred_id")
-    )
-    private List<Ingred> ingreds;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dish",
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DishIngred> dishIngreds;
     @Column(nullable = false)
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "dish",
             cascade = CascadeType.ALL, orphanRemoval = true)

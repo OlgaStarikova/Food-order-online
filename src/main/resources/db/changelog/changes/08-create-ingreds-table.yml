@@ -22,7 +22,7 @@ databaseChangeLog:
                   name: measure
                   type: varchar(10)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: price
                   type: decimal
@@ -41,23 +41,27 @@ databaseChangeLog:
               - column:
                   name: calories
                   type: int
+                  defaultValue: 0
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: proteins
                   type: int
+                  defaultValue: 0
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: fats
                   type: int
+                  defaultValue: 0
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: carbogydrates
                   type: int
+                  defaultValue: 0
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: ingredcategory_id
                   type: bigint

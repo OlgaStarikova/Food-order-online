@@ -34,19 +34,22 @@ public class Ingred {
     @Column(nullable = false)
     private BigDecimal price;
     private String description;
-    private int calories;
-    private int proteins;
-    private int fats;
-    private int carbogydrates;
+    @Column(nullable = false)
+    private int calories = 0;
+    @Column(nullable = false)
+    private int proteins = 0;
+    @Column(nullable = false)
+    private int fats = 0;
+    @Column(nullable = false)
+    private int carbogydrates = 0;
     private String coverImage;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(nullable = false, name = "ingredcategory_id")
     private IngredCategory ingredCategory;
     @Column(nullable = false)
     private boolean isDeleted = false;
 
     public Ingred() {
-
     }
 
     public Ingred(Long id) {

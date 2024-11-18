@@ -39,3 +39,9 @@ databaseChangeLog:
       file: db/changelog/changes/19-create-dishes-sizes-table.yml
   - include:
       file: db/changelog/changes/20-insert-sizes-table.yml
+  - include:
+      file: db/changelog/changes/21-insert-categories-table.yml
+  - include:
+      file: db/changelog/changes/22-insert-ingreds-table.yml
+  - include:
+      file: db/changelog/changes/23-insert-dishes-table.yml

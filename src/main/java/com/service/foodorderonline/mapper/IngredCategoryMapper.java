@@ -3,6 +3,7 @@ package com.service.foodorderonline.mapper;
 import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CreateIngredCategoryRequestDto;
 import com.service.foodorderonline.dto.IngredCategoryDto;
+import com.service.foodorderonline.dto.IngredCategoryWithIngredsDto;
 import com.service.foodorderonline.model.IngredCategory;
 import java.util.Optional;
 import org.mapstruct.Mapper;
@@ -12,6 +13,8 @@ import org.mapstruct.Named;
 @Mapper(config = MapperConfig.class)
 public interface IngredCategoryMapper {
     IngredCategoryDto toDto(IngredCategory ingredCategory);
+
+    IngredCategoryWithIngredsDto toWithIngredsDto(IngredCategory ingredCategory);
 
     IngredCategory toModel(CreateIngredCategoryRequestDto createIngredCategoryRequestDto);
 

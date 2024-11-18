@@ -22,12 +22,9 @@ databaseChangeLog:
                     referencedColumnNames: id
                     nullable: false
               - column:
-                  name: ingred_id
-                  type: bigint
+                  name: ingred_name
+                  type: varchar(50)
                   constraints:
-                    foreignKeyName: fk_order_item_ingreds_ingreds
-                    referencedTableName: ingreds
-                    referencedColumnNames: id
                     nullable: false
               - column:
                   name: quantity

@@ -15,6 +15,6 @@ public class DishDto {
     private String description;
     private String coverImage;
     private Long categoryId;
-    private List<IngredDto> ingredDtos;
+    private List<DishIngredDto> dishIngredDtos;
     private List<DishSizePriceDto> dishSizePriceDtos;
 }

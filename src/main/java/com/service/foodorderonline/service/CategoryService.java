@@ -1,6 +1,7 @@
 package com.service.foodorderonline.service;
 
 import com.service.foodorderonline.dto.CategoryDto;
+import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
 import java.util.List;
@@ -18,4 +19,6 @@ public interface CategoryService {
     void deleteById(Long id);
 
     List<DishDto> findsByCategoryId(Long id);
+
+    List<CategoryWithDishesDto> findAllWithDishes(Pageable pageable);
 }

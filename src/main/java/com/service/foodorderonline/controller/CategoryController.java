@@ -1,6 +1,7 @@
 package com.service.foodorderonline.controller;
 
 import com.service.foodorderonline.dto.CategoryDto;
+import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
 import com.service.foodorderonline.service.CategoryService;
@@ -66,8 +67,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update the category", description = "Update the inngred category by Id."
-            + "Params: id = Id of the book. Available for admins.")
+    @Operation(summary = "Update the category", description = "Update the  category by Id."
+            + "Params: id = Id of the category. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
     public CategoryDto updateCategory(@PathVariable Long id,
                                       @RequestBody @Valid CreateCategoryRequestDto requestDto) {
@@ -81,5 +82,14 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('USER')")
     List<DishDto> getDishesByCategoryId(@PathVariable Long id) {
         return categoryService.findsByCategoryId(id);
+    }
+
+    @GetMapping("/dishes")
+    @Operation(summary = "Get a list of  categories", description = "Get all  categories."
+            + "Params(optional): page = page number, size = count of books in one page,"
+            + " namefield = field for sorting. Available for all.")
+    public List<CategoryWithDishesDto> getAllWithDishes(@ParameterObject @PageableDefault
+                                                            Pageable pageable) {
+        return categoryService.findAllWithDishes(pageable);
     }
 }

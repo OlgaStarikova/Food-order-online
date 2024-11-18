@@ -1,6 +1,7 @@
 package com.service.foodorderonline.service.impl;
 
 import com.service.foodorderonline.dto.CategoryDto;
+import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
@@ -62,6 +63,18 @@ public class CategoryServiceImpl implements CategoryService {
     public List<DishDto> findsByCategoryId(Long id) {
         return dishRepository.findDishesByCategoryId(id).stream()
                 .map(dishMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<CategoryWithDishesDto> findAllWithDishes(Pageable pageable) {
+        return categoryRepository.findAll(pageable).stream()
+                .map(c -> {
+                    CategoryWithDishesDto withDishesDto = new CategoryWithDishesDto(c.getName(),
+                            dishMapper.toShortDtos(dishRepository
+                                    .findDishesByCategoryId(c.getId())));
+                    return withDishesDto;
+                })
                 .toList();
     }
 }

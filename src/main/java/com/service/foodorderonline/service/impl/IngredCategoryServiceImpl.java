@@ -33,7 +33,8 @@ public class IngredCategoryServiceImpl implements IngredCategoryService {
     @Override
     public IngredCategoryDto getById(Long id) {
         IngredCategory category = categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Can't find category by id " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Can't find category by id "
+                        + id));
         return categoryMapper.toDto(category);
     }
 

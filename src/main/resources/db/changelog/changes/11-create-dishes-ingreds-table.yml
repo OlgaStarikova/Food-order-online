@@ -7,6 +7,13 @@ databaseChangeLog:
             tableName: dishes_ingreds
             columns:
               - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
                   name: dish_id
                   type: bigint
                   constraints:
@@ -25,4 +32,16 @@ databaseChangeLog:
                     referencedColumnNames: id
                     unique: true
                     uniqueConstraintName: dish_id-ingred_id_unique
+                    nullable: false
+              - column:
+                  name: is_default
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
                     nullable: false

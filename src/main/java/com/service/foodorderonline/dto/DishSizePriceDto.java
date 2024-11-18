@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 @Schema(description = "DishSizePrice response DTO")
 public class DishSizePriceDto {
     private Long id;
+    private Long sizeId;
     private String sizeName;
     private BigDecimal price;
 
