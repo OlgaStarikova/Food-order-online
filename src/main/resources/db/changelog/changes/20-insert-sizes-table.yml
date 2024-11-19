@@ -30,3 +30,39 @@ databaseChangeLog:
               - column:
                   name: name
                   value: велика
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: 0.5 л
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: 1 л
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: name
+                  value: 1.5 л
+        - insert:
+            tableName: sizes
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: name
+                  value: Звичайний
