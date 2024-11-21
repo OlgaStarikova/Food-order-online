@@ -21,22 +21,37 @@ public interface DishIngredRepository extends JpaRepository<DishIngred, Long> {
     @Query("SELECT distinct ingredCategory FROM DishIngred dishIngred "
             + "JOIN dishIngred.ingred ingred "
             + "JOIN ingred.ingredCategory ingredCategory "
-            + "WHERE dishIngred.dish.id = :dishId AND dishIngred.isDefault = FALSE")
-    List<IngredCategory> findIngredCategoriesByDishId(
+            + "WHERE dishIngred.dish.id = :dishId AND dishIngred.selected = FALSE")
+    List<IngredCategory> findAllIngredCategoriesByDishId(
+            @Param("dishId") Long dishId);
+
+    @Query("SELECT distinct ingredCategory FROM DishIngred dishIngred "
+            + "JOIN dishIngred.ingred ingred "
+            + "JOIN ingred.ingredCategory ingredCategory "
+            + "WHERE dishIngred.dish.id = :dishId AND dishIngred.selected = FALSE")
+    List<IngredCategory> findNotDefaultIngredCategoriesByDishId(
             @Param("dishId") Long dishId);
 
     @Query("SELECT distinct ingred FROM DishIngred dishIngred "
             + "JOIN dishIngred.ingred ingred "
-            + "WHERE dishIngred.dish.id = :dishId  AND dishIngred.isDefault = TRUE")
+            + "WHERE dishIngred.dish.id = :dishId  AND dishIngred.selected = TRUE")
     List<Ingred> findDefaultIngredsByDishId(
             @Param("dishId") Long dishId);
 
     @Query("SELECT ingred FROM DishIngred dishIngred "
             + "JOIN dishIngred.ingred ingred "
             + "WHERE dishIngred.dish.id = :dishId "
-            + "AND dishIngred.isDefault = FALSE "
+            + "AND dishIngred.selected = FALSE "
             + "AND dishIngred.ingred.ingredCategory.id = :ingredCategoryId")
-    List<Ingred> findIngredsInCategoryByDishId(
+    List<Ingred> findNotDefaultIngredsInCategoryByDishId(
+            @Param("dishId") Long dishId,
+            @Param("ingredCategoryId") Long categoryId);
+
+    @Query("SELECT ingred FROM DishIngred dishIngred "
+            + "JOIN dishIngred.ingred ingred "
+            + "WHERE dishIngred.dish.id = :dishId "
+            + "AND dishIngred.ingred.ingredCategory.id = :ingredCategoryId")
+    List<Ingred> findAllIngredsInCategoryByDishId(
             @Param("dishId") Long dishId,
             @Param("ingredCategoryId") Long categoryId);
 

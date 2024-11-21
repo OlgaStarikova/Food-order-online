@@ -3,6 +3,7 @@ package com.service.foodorderonline.controller;
 import com.service.foodorderonline.dto.CreateDishRequestDto;
 import com.service.foodorderonline.dto.DishDto;
 import com.service.foodorderonline.dto.DishNiceDto;
+import com.service.foodorderonline.dto.IngredCategoryWithIngredsDto;
 import com.service.foodorderonline.service.DishService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,35 +21,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Dish management", description = "Endpoints for managing dishes")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/dishes")
 public class DishController {
     private final DishService dishService;
 
-    @GetMapping
+    @GetMapping("/dishes")
     @Operation(summary = "Get a list of dishes", description = "Get a list of all available dishes."
             + "Params(optional): page = page number, size = count of dishes in one page,"
-            + " namefield = field for sorting. Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + " namefield = field for sorting. Available for all")
     public List<DishDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
         return dishService.findAll(pageable);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/dishes/{id}")
     @Operation(summary = "Get the dish by Id", description = "Get the dish by Id"
-            + "Params: id = Id of the dish. Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + "Params: id = Id of the dish. Available for all.")
     public DishNiceDto getDishById(@PathVariable Long id) {
         return dishService.findById(id);
     }
 
-    @PostMapping
+    @GetMapping("/dishes/{id}/ingreds")
+    @Operation(summary = "Get dish's ingreds by Id", description = "Get the dish's ingreds by Id"
+            + "Params: id = Id of the dish. Available for all.")
+    public List<IngredCategoryWithIngredsDto> getDishIngredsById(@PathVariable Long id) {
+        return dishService.findIngredsById(id);
+    }
+
+    @PostMapping("admin/dishes")
     @Operation(summary = "Create a new dish", description = "Create a new dish. "
             + "Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -57,7 +61,7 @@ public class DishController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("admin/dishes/{id}")
     @Operation(summary = "Delete the dish", description = "Delete the dish by Id."
             + "Params: id = Id of the dish. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -65,7 +69,7 @@ public class DishController {
         dishService.deleteDish(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("admin/dishes/{id}")
     @Operation(summary = "Update the dish", description = "Update the dish by Id."
             + "Params: id = Id of the dish. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")

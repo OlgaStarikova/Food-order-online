@@ -7,6 +7,7 @@ import com.service.foodorderonline.dto.IngredCategoryWithIngredsDto;
 import com.service.foodorderonline.model.IngredCategory;
 import java.util.Optional;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
@@ -14,6 +15,7 @@ import org.mapstruct.Named;
 public interface IngredCategoryMapper {
     IngredCategoryDto toDto(IngredCategory ingredCategory);
 
+    @Mapping(source = "name", target = "title")
     IngredCategoryWithIngredsDto toWithIngredsDto(IngredCategory ingredCategory);
 
     IngredCategory toModel(CreateIngredCategoryRequestDto createIngredCategoryRequestDto);

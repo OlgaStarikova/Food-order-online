@@ -10,9 +10,11 @@ import lombok.experimental.Accessors;
 @Schema(description = "Ingredient short response DTO")
 public class IngredNiceDto {
     private Long id;
-    private String name;
+    private String title;
     private String measure;
     private BigDecimal price;
+    private boolean itSize;
+    private boolean disabled;
 
     public IngredNiceDto() {
     }

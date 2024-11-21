@@ -20,6 +20,7 @@ import com.service.foodorderonline.repository.dish.DishRepository;
 import com.service.foodorderonline.repository.dish.DishSizePriceRepository;
 import com.service.foodorderonline.repository.dish.SizeRepository;
 import com.service.foodorderonline.service.DishService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -102,13 +103,14 @@ public class DishServiceImpl implements DishService {
                 .findDefaultIngredsByDishId(id)));
 
         dishNiceDto.setCategoryWithIngredsDtos(dishIngredRepository
-                .findIngredCategoriesByDishId(id).stream()
+                .findNotDefaultIngredCategoriesByDishId(id).stream()
                 .map(c -> {
                     IngredCategoryWithIngredsDto
                             ingredCategoryWithIngredsDto =
-                            new IngredCategoryWithIngredsDto(c.getName(), ingredMapper
-                                    .toNiceDtos(dishIngredRepository.findIngredsInCategoryByDishId(
-                                            dish.getId(), c.getId())));
+                            new IngredCategoryWithIngredsDto(c.getName(), c.isAllowMultiple(),
+                                    ingredMapper.toNiceDtos(dishIngredRepository
+                                            .findNotDefaultIngredsInCategoryByDishId(
+                                                    dish.getId(), c.getId())));
                     return ingredCategoryWithIngredsDto;
                 })
                 .toList());
@@ -129,5 +131,28 @@ public class DishServiceImpl implements DishService {
         dishRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find dish by id " + id));
         return dishMapper.toDto(dishRepository.save(dish));
+    }
+
+    @Override
+    public List<IngredCategoryWithIngredsDto> findIngredsById(Long id) {
+        List<IngredCategoryWithIngredsDto> list = new ArrayList<>();
+        list.add(new IngredCategoryWithIngredsDto("", false,
+                dishSizePriceRepository.findDishSizePricesByDishId(id)
+                        .stream()
+                        .map(dishSizePriceMapper::toNiceDto)
+                        .toList()));
+        list.addAll(dishIngredRepository
+                .findAllIngredCategoriesByDishId(id).stream()
+                .map(c -> {
+                    IngredCategoryWithIngredsDto
+                            ingredCategoryWithIngredsDto =
+                            new IngredCategoryWithIngredsDto(c.getName(), c.isAllowMultiple(),
+                                    ingredMapper.toNiceDtos(
+                                            dishIngredRepository.findAllIngredsInCategoryByDishId(
+                                                    id, c.getId())));
+                    return ingredCategoryWithIngredsDto;
+                })
+                .toList());
+        return list;
     }
 }

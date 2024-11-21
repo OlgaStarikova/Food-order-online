@@ -34,7 +34,13 @@ databaseChangeLog:
                     uniqueConstraintName: dish_id-ingred_id_unique
                     nullable: false
               - column:
-                  name: is_default
+                  name: selected
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: disabled
                   type: boolean
                   defaultValueBoolean: false
                   constraints:

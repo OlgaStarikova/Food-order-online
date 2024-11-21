@@ -15,7 +15,7 @@ public class DishIngredDto {
     private String measure;
     private BigDecimal price;
     private String ingredCategoryName;
-    private boolean isDefault;
+    private boolean selected;
 
     public DishIngredDto() {
     }

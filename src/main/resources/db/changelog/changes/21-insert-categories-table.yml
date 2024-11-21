@@ -60,6 +60,9 @@ databaseChangeLog:
               - column:
                   name: sortnumber
                   value: 1
+              - column:
+                  name: allow_multiple
+                  value: 1
         - insert:
             tableName: ingredcategories
             columns:
@@ -72,6 +75,9 @@ databaseChangeLog:
               - column:
                   name: sortnumber
                   value: 2
+              - column:
+                  name: allow_multiple
+                  value: 1
         - insert:
             tableName: ingredcategories
             columns:
@@ -84,6 +90,9 @@ databaseChangeLog:
               - column:
                   name: sortnumber
                   value: 3
+              - column:
+                  name: allow_multiple
+                  value: 1
         - insert:
             tableName: ingredcategories
             columns:

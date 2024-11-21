@@ -5,7 +5,8 @@ import java.util.List;
 
 @Schema(description = "IngredCategoryWithIngreds response DTO")
 public record IngredCategoryWithIngredsDto(
-        String name,
+        String title,
+        boolean allowMultiple,
         List<IngredNiceDto> ingredNiceDtos
 ) {
 }

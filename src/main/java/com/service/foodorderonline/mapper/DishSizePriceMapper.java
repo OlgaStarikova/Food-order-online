@@ -3,6 +3,7 @@ package com.service.foodorderonline.mapper;
 import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CreateDishSizePriceRequestDto;
 import com.service.foodorderonline.dto.DishSizePriceDto;
+import com.service.foodorderonline.dto.IngredNiceDto;
 import com.service.foodorderonline.model.DishSizePrice;
 import com.service.foodorderonline.model.Size;
 import java.util.List;
@@ -17,6 +18,16 @@ public interface DishSizePriceMapper {
     @Mapping(source = "size", target = "sizeName", qualifiedByName = "setSizeNameDto")
     @Mapping(source = "size.id", target = "sizeId")
     DishSizePriceDto toDto(DishSizePrice dishSizePrice);
+
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeNameDto")
+    @Mapping(target = "itSize", constant = "true")
+    @Mapping(target = "disabled", constant = "false")
+    IngredNiceDto toNiceDto(DishSizePrice dishSizePrice);
+
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeNameDto")
+    @Mapping(target = "itSize", constant = "true")
+    @Mapping(target = "disabled", constant = "false")
+    List<IngredNiceDto> toNiceDtos(List<DishSizePrice> dishSizePrices);
 
     @Mapping(source = "size", target = "sizeName", qualifiedByName = "setSizeNameDto")
     List<DishSizePriceDto> toDtos(List<DishSizePrice> dishSizePrices);

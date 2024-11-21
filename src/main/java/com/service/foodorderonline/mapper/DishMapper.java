@@ -100,7 +100,7 @@ public interface DishMapper {
                     .getIngredCategory().getName());
 
         }
-        dishIngredDto.setDefault(dishIngred.isDefault());
+        dishIngredDto.setSelected(dishIngred.isSelected());
 
         return dishIngredDto;
     }

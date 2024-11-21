@@ -27,6 +27,8 @@ public class IngredCategory {
     private String name;
     @Column
     private String description;
+    @Column
+    private boolean allowMultiple = true;
     @Column(name = "sortnumber")
     private int sortNumber;
     @Column(nullable = false)

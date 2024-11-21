@@ -33,7 +33,7 @@ public class DishIngred {
     @JoinColumn(nullable = false, name = "ingred_id")
     private Ingred ingred;
     @Column(nullable = false)
-    private boolean isDefault = false;
+    private boolean selected = false;
     @Column(nullable = false)
     private boolean isDeleted = false;
 
