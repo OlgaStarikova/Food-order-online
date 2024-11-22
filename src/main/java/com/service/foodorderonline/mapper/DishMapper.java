@@ -7,6 +7,7 @@ import com.service.foodorderonline.dto.DishIngredDto;
 import com.service.foodorderonline.dto.DishNiceDto;
 import com.service.foodorderonline.dto.DishShortDto;
 import com.service.foodorderonline.dto.DishSizePriceDto;
+import com.service.foodorderonline.dto.DishWithSizesDto;
 import com.service.foodorderonline.model.Dish;
 import com.service.foodorderonline.model.DishIngred;
 import com.service.foodorderonline.model.DishSizePrice;
@@ -35,6 +36,10 @@ public interface DishMapper {
     @Mapping(source = "dishSizePrices", target = "dishSizePriceDtos",
             qualifiedByName = "setDishSizePriceDtoses")
     DishNiceDto toNiceDto(Dish dish);
+
+    @Mapping(source = "dishSizePrices", target = "dishSizePriceDtos",
+            qualifiedByName = "setDishSizePriceDtoses")
+    DishWithSizesDto toWithSizeDto(Dish dish);
 
     @Mapping(source = "dish.id", target = "dishId")
     List<DishShortDto> toShortDtos(List<Dish> dishes);
@@ -73,7 +78,7 @@ public interface DishMapper {
 
             if (dishSizePrice.getSize() != null) {
                 dishSizePriceDto.setSizeId(dishSizePrice.getSize().getId());
-                dishSizePriceDto.setSizeName(dishSizePrice.getSize().getName());
+                dishSizePriceDto.setTitle(dishSizePrice.getSize().getTitle());
             }
 
             return dishSizePriceDto;

@@ -4,6 +4,8 @@ import com.service.foodorderonline.dto.CategoryDto;
 import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
+import com.service.foodorderonline.dto.DishNiceDto;
+import com.service.foodorderonline.dto.DishWithSizesDto;
 import com.service.foodorderonline.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,18 +23,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Tag(name = "Category management", description = "Endpoints for managing categories")
-@RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @PostMapping
+    @PostMapping("/admin/categories")
     @Operation(summary = "Create a new  category", description = "Create a new  category. "
             + "Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -40,25 +40,23 @@ public class CategoryController {
         return categoryService.save(requestDto);
     }
 
-    @GetMapping
+    @GetMapping("/categories")
     @Operation(summary = "Get a list of  categories", description = "Get all  categories."
             + "Params(optional): page = page number, size = count of books in one page,"
-            + " namefield = field for sorting. Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + " namefield = field for sorting. Available for all.")
     public List<CategoryDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/categories/{id}")
     @Operation(summary = "Get the  category by Id", description = "Get the  category by Id"
-            + "Params: id = Id of the category. Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + "Params: id = Id of the category. Available for all.")
     public CategoryDto getCategoryById(@PathVariable Long id) {
         return categoryService.getById(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/categories/{id}")
     @Operation(summary = "Delete the category", description = "Delete the  category by Id."
             + "Params: id = Id of the category. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -66,7 +64,7 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/categories/{id}")
     @Operation(summary = "Update the category", description = "Update the  category by Id."
             + "Params: id = Id of the category. Available for admins.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -75,21 +73,36 @@ public class CategoryController {
         return categoryService.update(id, requestDto);
     }
 
-    @GetMapping("/{id}/dishes")
+    @GetMapping("/categories/{id}/disheslist")
     @Operation(summary = "Get dishes in the category", description = "Get dishes in the category"
             + " by Id of category. "
-            + "Params: id = Id of the category. Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + "Params: id = Id of the category. Available for all.")
+    List<DishWithSizesDto> getDishesListByCategoryId(@PathVariable Long id) {
+        return categoryService.findDihesByCategoryId(id);
+    }
+
+    @GetMapping("/categories/{id}/constructors")
+    @Operation(summary = "Get dishes in the category", description = "Get dishes in the category"
+            + " by Id of category. "
+            + "Params: id = Id of the category. Available for all.")
+    List<DishNiceDto> getConstructorDishesByCategoryId(@PathVariable Long id) {
+        return categoryService.findConstructorDishesByCategoryId(id);
+    }
+
+    @GetMapping("/categories/{id}/dishes")
+    @Operation(summary = "Get dishes in the category", description = "Get dishes in the category"
+            + " by Id of category. "
+            + "Params: id = Id of the category. Available for all.")
     List<DishDto> getDishesByCategoryId(@PathVariable Long id) {
         return categoryService.findsByCategoryId(id);
     }
 
-    @GetMapping("/dishes")
+    @GetMapping("/admin/categories/dishes")
     @Operation(summary = "Get a list of  categories", description = "Get all  categories."
             + "Params(optional): page = page number, size = count of books in one page,"
             + " namefield = field for sorting. Available for all.")
     public List<CategoryWithDishesDto> getAllWithDishes(@ParameterObject @PageableDefault
-                                                            Pageable pageable) {
-        return categoryService.findAllWithDishes(pageable);
+                                                        Pageable pageable) {
+        return categoryService.getAllCategoriesWithDishes(pageable);
     }
 }

@@ -24,7 +24,7 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String name;
+    private String title;
     @Column(nullable = false)
     private boolean isDeleted = false;
 

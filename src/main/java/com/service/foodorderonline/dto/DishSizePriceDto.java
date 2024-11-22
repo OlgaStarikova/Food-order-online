@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 public class DishSizePriceDto {
     private Long id;
     private Long sizeId;
-    private String sizeName;
+    private String title;
     private BigDecimal price;
 
     public DishSizePriceDto(Long id) {

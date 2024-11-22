@@ -54,9 +54,9 @@ public class DishServiceImpl implements DishService {
                 .map(d -> d.setDish(dish))
                 .map(dishSizePriceRepository::save)
                 .map(dishSizePriceMapper::toDto)
-                .map(t -> t.setSizeName(sizeRepository.findById(t.getSizeId())
+                .map(t -> t.setTitle(sizeRepository.findById(t.getSizeId())
                         .orElseThrow(() -> new EntityNotFoundException(
-                                "Can't find Size by id " + t.getSizeId())).getName()))
+                                "Can't find Size by id " + t.getSizeId())).getTitle()))
                 .toList();
 
         List<DishIngredDto> ingredDtos = requestDto.getCreateDishIngredRequestDtos()

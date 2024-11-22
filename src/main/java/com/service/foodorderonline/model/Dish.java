@@ -30,10 +30,12 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String name;
+    private String title;
     private int timecook;
     private String description;
-    private String coverImage;
+    private String imageSrc;
+    @Column(nullable = false)
+    private boolean itConstructor = false;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "category_id")
     private Category category;

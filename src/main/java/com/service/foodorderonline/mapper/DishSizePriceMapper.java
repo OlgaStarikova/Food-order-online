@@ -15,31 +15,31 @@ import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface DishSizePriceMapper {
-    @Mapping(source = "size", target = "sizeName", qualifiedByName = "setSizeNameDto")
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     @Mapping(source = "size.id", target = "sizeId")
     DishSizePriceDto toDto(DishSizePrice dishSizePrice);
 
-    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeNameDto")
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     @Mapping(target = "itSize", constant = "true")
     @Mapping(target = "disabled", constant = "false")
     IngredNiceDto toNiceDto(DishSizePrice dishSizePrice);
 
-    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeNameDto")
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     @Mapping(target = "itSize", constant = "true")
     @Mapping(target = "disabled", constant = "false")
     List<IngredNiceDto> toNiceDtos(List<DishSizePrice> dishSizePrices);
 
-    @Mapping(source = "size", target = "sizeName", qualifiedByName = "setSizeNameDto")
+    @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     List<DishSizePriceDto> toDtos(List<DishSizePrice> dishSizePrices);
 
     DishSizePrice toModel(CreateDishSizePriceRequestDto requestDto);
 
-    @Named("setSizeNameDto")
-    default String getSizeNameForDto(Size size) {
+    @Named("setSizeTitleDto")
+    default String getSizeTitleForDto(Size size) {
         if (size == null) {
             return null;
         }
-        return size.getName();
+        return size.getTitle();
     }
 
     @AfterMapping

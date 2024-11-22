@@ -4,6 +4,8 @@ import com.service.foodorderonline.dto.CategoryDto;
 import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
+import com.service.foodorderonline.dto.DishNiceDto;
+import com.service.foodorderonline.dto.DishWithSizesDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
 import com.service.foodorderonline.mapper.CategoryMapper;
 import com.service.foodorderonline.mapper.DishMapper;
@@ -67,7 +69,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryWithDishesDto> findAllWithDishes(Pageable pageable) {
+    public List<CategoryWithDishesDto> getAllCategoriesWithDishes(Pageable pageable) {
         return categoryRepository.findAll(pageable).stream()
                 .map(c -> {
                     CategoryWithDishesDto withDishesDto = new CategoryWithDishesDto(c.getName(),
@@ -75,6 +77,22 @@ public class CategoryServiceImpl implements CategoryService {
                                     .findDishesByCategoryId(c.getId())));
                     return withDishesDto;
                 })
+                .toList();
+    }
+
+    @Override
+    public List<DishWithSizesDto> findDihesByCategoryId(Long id) {
+        return dishRepository.findDishesByCategoryId(id).stream()
+                .filter(d -> d.isItConstructor() == false)
+                .map(dishMapper::toWithSizeDto)
+                .toList();
+    }
+
+    @Override
+    public List<DishNiceDto> findConstructorDishesByCategoryId(Long id) {
+        return dishRepository.findDishesByCategoryId(id).stream()
+                .filter(d -> d.isItConstructor() == true)
+                .map(dishMapper::toNiceDto)
                 .toList();
     }
 }

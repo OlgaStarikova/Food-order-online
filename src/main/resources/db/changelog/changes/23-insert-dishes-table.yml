@@ -10,14 +10,17 @@ databaseChangeLog:
                   name: id
                   value: 1
               - column:
-                  name: name
+                  name: title
                   value: Шаурма конструктор
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
+              - column:
+                  name: it_constructor
+                  value: 1
               - column:
                   name: category_id
                   value: 1
@@ -157,14 +160,14 @@ databaseChangeLog:
                   name: id
                   value: 2
               - column:
-                  name: name
+                  name: title
                   value: Шаурма класична
               - column:
                   name: timecook
                   value: 15
               - column:
-                  name: cover_image
-                  value:
+                  name: image_src
+                  value: images/classicial.jpg
               - column:
                   name: category_id
                   value: 1
@@ -286,14 +289,14 @@ databaseChangeLog:
                   name: id
                   value: 3
               - column:
-                  name: name
+                  name: title
                   value: Шаурма з яловичиною
               - column:
                   name: timecook
                   value: 15
               - column:
-                  name: cover_image
-                  value:
+                  name: image_src
+                  value: images/beaf.jpg
               - column:
                   name: category_id
                   value: 1
@@ -385,14 +388,14 @@ databaseChangeLog:
                   name: id
                   value: 4
               - column:
-                  name: name
+                  name: title
                   value: Шаурма з криветками
               - column:
                   name: timecook
                   value: 15
               - column:
-                  name: cover_image
-                  value:
+                  name: image_src
+                  value: images/shrimp.jpg
               - column:
                   name: category_id
                   value: 1
@@ -484,13 +487,13 @@ databaseChangeLog:
                   name: id
                   value: 5
               - column:
-                  name: name
+                  name: title
                   value: Шаурма з ковбасками
               - column:
                   name: timecook
                   value: 15
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -583,14 +586,17 @@ databaseChangeLog:
                   name: id
                   value: 6
               - column:
-                  name: name
+                  name: title
                   value: Піцца конструктор
               - column:
                   name: timecook
                   value: 30
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
+              - column:
+                  name: it_constructor
+                  value: 1
               - column:
                   name: category_id
                   value: 2
@@ -733,14 +739,17 @@ databaseChangeLog:
                   name: id
                   value: 7
               - column:
-                  name: name
+                  name: title
                   value: Млинці конструктор
               - column:
                   name: timecook
                   value: 10
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
+              - column:
+                  name: it_constructor
+                  value: 1
               - column:
                   name: category_id
                   value: 3
@@ -880,13 +889,13 @@ databaseChangeLog:
                   name: id
                   value: 8
               - column:
-                  name: name
+                  name: title
                   value: Маргарита
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -967,13 +976,13 @@ databaseChangeLog:
                   name: id
                   value: 9
               - column:
-                  name: name
+                  name: title
                   value: З яловичиною та грибами
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1054,13 +1063,13 @@ databaseChangeLog:
                   name: id
                   value: 10
               - column:
-                  name: name
+                  name: title
                   value: З креветками та авокадо
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1141,13 +1150,13 @@ databaseChangeLog:
                   name: id
                   value: 11
               - column:
-                  name: name
+                  name: title
                   value: З ковбасками та перцем
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1228,13 +1237,13 @@ databaseChangeLog:
                   name: id
                   value: 12
               - column:
-                  name: name
+                  name: title
                   value: Млинці класичні
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1291,13 +1300,13 @@ databaseChangeLog:
                   name: id
                   value: 13
               - column:
-                  name: name
+                  name: title
                   value: Млинці з яловичиною
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1354,13 +1363,13 @@ databaseChangeLog:
                   name: id
                   value: 14
               - column:
-                  name: name
+                  name: title
                   value: Млинці з креветками
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1417,13 +1426,13 @@ databaseChangeLog:
                   name: id
                   value: 15
               - column:
-                  name: name
+                  name: title
                   value: Млинці з ковбасками
               - column:
                   name: timecook
                   value: 20
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1480,13 +1489,13 @@ databaseChangeLog:
                   name: id
                   value: 16
               - column:
-                  name: name
+                  name: title
                   value: Курячі ніжки класичні
               - column:
                   name: timecook
                   value: 40
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1534,13 +1543,13 @@ databaseChangeLog:
                   name: id
                   value: 17
               - column:
-                  name: name
+                  name: title
                   value: Курячі крильця
               - column:
                   name: timecook
                   value: 40
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1588,13 +1597,13 @@ databaseChangeLog:
                   name: id
                   value: 18
               - column:
-                  name: name
+                  name: title
                   value: Наггетси
               - column:
                   name: timecook
                   value: 40
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1642,13 +1651,13 @@ databaseChangeLog:
                   name: id
                   value: 19
               - column:
-                  name: name
+                  name: title
                   value: Картопля фрі
               - column:
                   name: timecook
                   value: 15
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1696,13 +1705,13 @@ databaseChangeLog:
                   name: id
                   value: 20
               - column:
-                  name: name
+                  name: title
                   value: Кока-кола
               - column:
                   name: timecook
                   value: 0
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1738,13 +1747,13 @@ databaseChangeLog:
                   name: id
                   value: 21
               - column:
-                  name: name
+                  name: title
                   value: Фанта
               - column:
                   name: timecook
                   value: 0
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1780,13 +1789,13 @@ databaseChangeLog:
                   name: id
                   value: 22
               - column:
-                  name: name
+                  name: title
                   value: Спрайт
               - column:
                   name: timecook
                   value: 0
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id
@@ -1822,13 +1831,13 @@ databaseChangeLog:
                   name: id
                   value: 23
               - column:
-                  name: name
+                  name: title
                   value: Вода мінеральна
               - column:
                   name: timecook
                   value: 0
               - column:
-                  name: cover_image
+                  name: image_src
                   value:
               - column:
                   name: category_id

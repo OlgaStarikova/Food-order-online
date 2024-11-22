@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
+                  name: title
                   type: varchar(50)
                   constraints:
                     nullable: false
@@ -29,10 +29,16 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: cover_image
+                  name: image_src
                   type: varchar(100)
                   constraints:
                     nullable: true
+              - column:
+                  name: it_constructor
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
               - column:
                   name: category_id
                   type: bigint

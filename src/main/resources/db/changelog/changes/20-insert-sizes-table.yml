@@ -10,7 +10,7 @@ databaseChangeLog:
                   name: id
                   value: 1
               - column:
-                  name: name
+                  name: title
                   value: маленька
         - insert:
             tableName: sizes
@@ -19,7 +19,7 @@ databaseChangeLog:
                   name: id
                   value: 2
               - column:
-                  name: name
+                  name: title
                   value: середня
         - insert:
             tableName: sizes
@@ -28,7 +28,7 @@ databaseChangeLog:
                   name: id
                   value: 3
               - column:
-                  name: name
+                  name: title
                   value: велика
         - insert:
             tableName: sizes
@@ -37,7 +37,7 @@ databaseChangeLog:
                   name: id
                   value: 4
               - column:
-                  name: name
+                  name: title
                   value: 0.5 л
         - insert:
             tableName: sizes
@@ -46,7 +46,7 @@ databaseChangeLog:
                   name: id
                   value: 5
               - column:
-                  name: name
+                  name: title
                   value: 1 л
         - insert:
             tableName: sizes
@@ -55,7 +55,7 @@ databaseChangeLog:
                   name: id
                   value: 6
               - column:
-                  name: name
+                  name: title
                   value: 1.5 л
         - insert:
             tableName: sizes
@@ -64,5 +64,5 @@ databaseChangeLog:
                   name: id
                   value: 7
               - column:
-                  name: name
+                  name: title
                   value: Звичайний

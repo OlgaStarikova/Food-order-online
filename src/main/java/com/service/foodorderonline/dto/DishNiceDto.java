@@ -10,10 +10,10 @@ import lombok.experimental.Accessors;
 @Schema(description = "Dish response DTO")
 public class DishNiceDto {
     private Long id;
-    private String name;
+    private String title;
     private int timecook;
     private String description;
-    private String coverImage;
+    private String imageSrc;
     private List<DishSizePriceDto> dishSizePriceDtos;
     private List<IngredNiceDto> defaultIngredDtos;
     private List<IngredCategoryWithIngredsDto> categoryWithIngredsDtos;

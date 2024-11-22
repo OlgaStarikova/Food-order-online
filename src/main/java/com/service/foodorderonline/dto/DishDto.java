@@ -13,7 +13,7 @@ public class DishDto {
     private String name;
     private int timecook;
     private String description;
-    private String coverImage;
+    private String imageSrc;
     private Long categoryId;
     private List<DishIngredDto> dishIngredDtos;
     private List<DishSizePriceDto> dishSizePriceDtos;
