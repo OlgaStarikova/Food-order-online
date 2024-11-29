@@ -3,6 +3,7 @@ package com.service.foodorderonline.mapper;
 import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CreateDishSizePriceRequestDto;
 import com.service.foodorderonline.dto.DishSizePriceDto;
+import com.service.foodorderonline.dto.DishWithSizeDto;
 import com.service.foodorderonline.dto.IngredNiceDto;
 import com.service.foodorderonline.model.DishSizePrice;
 import com.service.foodorderonline.model.Size;
@@ -18,6 +19,12 @@ public interface DishSizePriceMapper {
     @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     @Mapping(source = "size.id", target = "sizeId")
     DishSizePriceDto toDto(DishSizePrice dishSizePrice);
+
+    @Mapping(source = "size", target = "sizeTitle", qualifiedByName = "setSizeTitleDto")
+    @Mapping(source = "size.id", target = "sizeId")
+    @Mapping(source = "dish.title", target = "title")
+    @Mapping(source = "dish.imageSrc", target = "imageSrc")
+    DishWithSizeDto toDishWithSizeDto(DishSizePrice dishSizePrice);
 
     @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")
     @Mapping(target = "itSize", constant = "true")

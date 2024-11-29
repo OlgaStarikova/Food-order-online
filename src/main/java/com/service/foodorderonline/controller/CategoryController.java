@@ -12,9 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,21 +37,6 @@ public class CategoryController {
         return categoryService.save(requestDto);
     }
 
-    @GetMapping("/categories")
-    @Operation(summary = "Get a list of  categories", description = "Get all  categories."
-            + "Params(optional): page = page number, size = count of books in one page,"
-            + " namefield = field for sorting. Available for all.")
-    public List<CategoryDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
-        return categoryService.findAll(pageable);
-    }
-
-    @GetMapping("/categories/{id}")
-    @Operation(summary = "Get the  category by Id", description = "Get the  category by Id"
-            + "Params: id = Id of the category. Available for all.")
-    public CategoryDto getCategoryById(@PathVariable Long id) {
-        return categoryService.getById(id);
-    }
-
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/admin/categories/{id}")
     @Operation(summary = "Delete the category", description = "Delete the  category by Id."
@@ -73,16 +55,25 @@ public class CategoryController {
         return categoryService.update(id, requestDto);
     }
 
+    @GetMapping("/categories/{id}")
+    @Operation(summary = "Get the  category by Id", description = "Get the  category by Id"
+            + "Params: id = Id of the category. Available for all.")
+    public CategoryWithDishesDto getCategoryById(@PathVariable Long id) {
+        return categoryService.getCategoryWithDishesById(id);
+    }
+
     @GetMapping("/categories/{id}/disheslist")
-    @Operation(summary = "Get dishes in the category", description = "Get dishes in the category"
+    @Operation(summary = "Get dishes with sizes and prices in the category",
+            description = "Get dishes with sizes and prices in the category"
             + " by Id of category. "
             + "Params: id = Id of the category. Available for all.")
     List<DishWithSizesDto> getDishesListByCategoryId(@PathVariable Long id) {
         return categoryService.findDihesByCategoryId(id);
     }
 
-    @GetMapping("/categories/{id}/constructors")
-    @Operation(summary = "Get dishes in the category", description = "Get dishes in the category"
+    @GetMapping("/categories/{id}/constructor")
+    @Operation(summary = "Get constructor in the category",
+            description = "Get dishes in the category"
             + " by Id of category. "
             + "Params: id = Id of the category. Available for all.")
     List<DishNiceDto> getConstructorDishesByCategoryId(@PathVariable Long id) {
@@ -95,14 +86,5 @@ public class CategoryController {
             + "Params: id = Id of the category. Available for all.")
     List<DishDto> getDishesByCategoryId(@PathVariable Long id) {
         return categoryService.findsByCategoryId(id);
-    }
-
-    @GetMapping("/admin/categories/dishes")
-    @Operation(summary = "Get a list of  categories", description = "Get all  categories."
-            + "Params(optional): page = page number, size = count of books in one page,"
-            + " namefield = field for sorting. Available for all.")
-    public List<CategoryWithDishesDto> getAllWithDishes(@ParameterObject @PageableDefault
-                                                        Pageable pageable) {
-        return categoryService.getAllCategoriesWithDishes(pageable);
     }
 }

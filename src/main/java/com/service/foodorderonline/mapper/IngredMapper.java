@@ -7,7 +7,6 @@ import com.service.foodorderonline.dto.IngredNiceDto;
 import com.service.foodorderonline.model.Ingred;
 import java.util.List;
 import java.util.Optional;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -27,8 +26,6 @@ public interface IngredMapper {
     List<IngredDto> toDtos(List<Ingred> ingreds);
 
     @Mapping(source = "ingred.id", target = "ingredId")
-    @Mapping(source = "ingred.name", target = "IngredNiceDto.title",
-            qualifiedByName = "setIngredTitle")
     List<IngredNiceDto> toNiceDtos(List<Ingred> ingreds);
 
     @Mapping(source = "ingredcategoryId", target = "ingredCategory",
@@ -41,11 +38,5 @@ public interface IngredMapper {
         return Optional.ofNullable(id)
                 .map(Ingred::new)
                 .orElse(null);
-    }
-
-    @AfterMapping
-    default void setIngredNiceDtoTitle(@MappingTarget IngredNiceDto ingredNiceDto,
-                                       Ingred ingred) {
-        ingredNiceDto.setTitle(ingred.getName());
     }
 }

@@ -33,13 +33,17 @@ public interface DishMapper {
     @Mapping(source = "dish.id", target = "dishId")
     List<DishDto> toDtos(List<Dish> dishes);
 
-    @Mapping(source = "dishSizePrices", target = "dishSizePriceDtos",
+    @Mapping(source = "dishSizePrices", target = "sizePriceOptions",
             qualifiedByName = "setDishSizePriceDtoses")
     DishNiceDto toNiceDto(Dish dish);
 
-    @Mapping(source = "dishSizePrices", target = "dishSizePriceDtos",
+    @Mapping(source = "dishSizePrices", target = "sizePriceOptions",
             qualifiedByName = "setDishSizePriceDtoses")
-    DishWithSizesDto toWithSizeDto(Dish dish);
+    List<DishNiceDto> toNiceDtos(List<Dish> dishes);
+
+    @Mapping(source = "dishSizePrices", target = "sizePriceOptions",
+            qualifiedByName = "setDishSizePriceDtoses")
+    DishWithSizesDto toWithSizesDto(Dish dish);
 
     @Mapping(source = "dish.id", target = "dishId")
     List<DishShortDto> toShortDtos(List<Dish> dishes);
@@ -98,7 +102,7 @@ public interface DishMapper {
         }
         if (dishIngred.getIngred() != null) {
             dishIngredDto.setIngredId(dishIngred.getIngred().getId());
-            dishIngredDto.setName(dishIngred.getIngred().getName());
+            dishIngredDto.setTitle(dishIngred.getIngred().getTitle());
             dishIngredDto.setMeasure(dishIngred.getIngred().getMeasure());
             dishIngredDto.setPrice(dishIngred.getIngred().getPrice());
             dishIngredDto.setIngredCategoryName(dishIngred.getIngred()

@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class CreateIngredRequestDto {
     @NotBlank
-    private String name;
+    private String title;
     @NotBlank
     private String measure;
     @Min(0)

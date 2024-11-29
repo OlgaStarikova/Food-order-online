@@ -22,9 +22,11 @@ public interface CategoryService {
 
     List<DishDto> findsByCategoryId(Long id);
 
-    List<CategoryWithDishesDto> getAllCategoriesWithDishes(Pageable pageable);
+    CategoryWithDishesDto getCategoryWithDishesById(Long id);
 
     List<DishWithSizesDto> findDihesByCategoryId(Long id);
+
+    List<DishNiceDto> findNotConstructorDishesByCategoryId(Long id);
 
     List<DishNiceDto> findConstructorDishesByCategoryId(Long id);
 

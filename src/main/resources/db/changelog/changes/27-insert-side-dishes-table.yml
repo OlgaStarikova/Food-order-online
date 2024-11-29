@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-side-dishes-table
+      author: Olya Starykova
+      changes:
+        - insert:
+            tableName: side_dishes
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: dishes_sizes_prices_id
+                  value: 34
+        - insert:
+            tableName: side_dishes
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: dishes_sizes_prices_id
+                  value: 32

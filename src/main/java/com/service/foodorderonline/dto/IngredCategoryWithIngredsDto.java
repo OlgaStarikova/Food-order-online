@@ -7,6 +7,6 @@ import java.util.List;
 public record IngredCategoryWithIngredsDto(
         String title,
         boolean allowMultiple,
-        List<IngredNiceDto> ingredNiceDtos
+        List<IngredNiceDto> options
 ) {
 }

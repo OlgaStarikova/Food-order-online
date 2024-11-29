@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Schema(description = "Ingredient response DTO")
 public class IngredDto {
     private Long id;
-    private String name;
+    private String title;
     private String measure;
     private BigDecimal price;
     private String description;

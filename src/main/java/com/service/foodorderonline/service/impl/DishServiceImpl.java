@@ -69,7 +69,7 @@ public class DishServiceImpl implements DishService {
                     Ingred ingred = ingredRepository.findById(t.getIngredId())
                             .orElseThrow(() -> new EntityNotFoundException(
                                     "Can't find Ingred by id " + t.getIngredId()));
-                    t.setName(ingred.getName());
+                    t.setTitle(ingred.getTitle());
                     t.setMeasure(ingred.getMeasure());
                     t.setPrice(ingred.getPrice());
                     t.setIngredCategoryName(ingred.getIngredCategory().getName());
@@ -99,10 +99,10 @@ public class DishServiceImpl implements DishService {
 
         DishNiceDto dishNiceDto = dishMapper.toNiceDto(dish);
 
-        dishNiceDto.setDefaultIngredDtos(ingredMapper.toNiceDtos(dishIngredRepository
+        dishNiceDto.setDefaultOptions(ingredMapper.toNiceDtos(dishIngredRepository
                 .findDefaultIngredsByDishId(id)));
 
-        dishNiceDto.setCategoryWithIngredsDtos(dishIngredRepository
+        dishNiceDto.setIngredOptions(dishIngredRepository
                 .findNotDefaultIngredCategoriesByDishId(id).stream()
                 .map(c -> {
                     IngredCategoryWithIngredsDto

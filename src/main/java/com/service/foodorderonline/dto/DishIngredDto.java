@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 public class DishIngredDto {
     private Long id;
     private Long ingredId;
-    private String name;
+    private String title;
     private String measure;
     private BigDecimal price;
     private String ingredCategoryName;

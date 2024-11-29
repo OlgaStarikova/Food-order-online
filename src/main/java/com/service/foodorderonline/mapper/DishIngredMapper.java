@@ -17,7 +17,7 @@ import org.mapstruct.Named;
 @Mapper(config = MapperConfig.class)
 public interface DishIngredMapper {
     @Mapping(source = "ingred.id", target = "ingredId")
-    @Mapping(source = "ingred.name", target = "name")
+    @Mapping(source = "ingred.title", target = "title")
     @Mapping(source = "ingred.measure", target = "measure")
     @Mapping(source = "ingred.price", target = "price")
     @Mapping(source = "ingred.ingredCategory", target = "ingredCategoryName",

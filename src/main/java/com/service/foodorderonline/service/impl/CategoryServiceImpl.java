@@ -5,13 +5,20 @@ import com.service.foodorderonline.dto.CategoryWithDishesDto;
 import com.service.foodorderonline.dto.CreateCategoryRequestDto;
 import com.service.foodorderonline.dto.DishDto;
 import com.service.foodorderonline.dto.DishNiceDto;
+import com.service.foodorderonline.dto.DishWithSizeDto;
 import com.service.foodorderonline.dto.DishWithSizesDto;
+import com.service.foodorderonline.dto.IngredCategoryWithIngredsDto;
+import com.service.foodorderonline.dto.IngredNiceDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
 import com.service.foodorderonline.mapper.CategoryMapper;
 import com.service.foodorderonline.mapper.DishMapper;
+import com.service.foodorderonline.mapper.DishSizePriceMapper;
+import com.service.foodorderonline.mapper.IngredMapper;
 import com.service.foodorderonline.model.Category;
 import com.service.foodorderonline.repository.CategoryRepository;
+import com.service.foodorderonline.repository.dish.DishIngredRepository;
 import com.service.foodorderonline.repository.dish.DishRepository;
+import com.service.foodorderonline.repository.dish.SideDishRepository;
 import com.service.foodorderonline.service.CategoryService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
     private final DishMapper dishMapper;
+    private final DishIngredRepository dishIngredRepository;
     private final DishRepository dishRepository;
+    private final DishSizePriceMapper dishSizePriceMapper;
+    private final IngredMapper ingredMapper;
+    private final SideDishRepository sideDishRepository;
 
     @Override
     public List<CategoryDto> findAll(Pageable pageable) {
@@ -69,22 +80,31 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryWithDishesDto> getAllCategoriesWithDishes(Pageable pageable) {
-        return categoryRepository.findAll(pageable).stream()
-                .map(c -> {
-                    CategoryWithDishesDto withDishesDto = new CategoryWithDishesDto(c.getName(),
-                            dishMapper.toShortDtos(dishRepository
-                                    .findDishesByCategoryId(c.getId())));
-                    return withDishesDto;
-                })
-                .toList();
+    public CategoryWithDishesDto getCategoryWithDishesById(Long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find category by id " + id));
+        return categoryMapper.toWithDishesDto(category).setDishesList(
+                        findNotConstructorDishesByCategoryId(id))
+                .setConstructors(findConstructorDishesByCategoryId(id))
+                .setSideDishesList(findSideDihes());
     }
 
     @Override
     public List<DishWithSizesDto> findDihesByCategoryId(Long id) {
         return dishRepository.findDishesByCategoryId(id).stream()
                 .filter(d -> d.isItConstructor() == false)
-                .map(dishMapper::toWithSizeDto)
+                .map(dishMapper::toWithSizesDto)
+                .toList();
+    }
+
+    @Override
+    public List<DishNiceDto> findNotConstructorDishesByCategoryId(Long id) {
+        return dishRepository.findDishesByCategoryId(id).stream()
+                .filter(d -> d.isItConstructor() == false)
+                .map(dishMapper::toNiceDto)
+                .map(d -> d.setDefaultOptions(findDefaultOptions(d.getId()))
+                        .setIngredOptions(findIngredOptions(d.getId())))
                 .toList();
     }
 
@@ -93,6 +113,36 @@ public class CategoryServiceImpl implements CategoryService {
         return dishRepository.findDishesByCategoryId(id).stream()
                 .filter(d -> d.isItConstructor() == true)
                 .map(dishMapper::toNiceDto)
+                .map(d -> d.setDefaultOptions(findDefaultOptions(d.getId()))
+                        .setIngredOptions(findIngredOptions(d.getId())))
+                .toList();
+    }
+
+    private List<IngredNiceDto> findDefaultOptions(Long dishId) {
+        return ingredMapper.toNiceDtos(dishIngredRepository
+                .findDefaultIngredsByDishId(dishId));
+    }
+
+    private List<IngredCategoryWithIngredsDto> findIngredOptions(Long dishId) {
+        return dishIngredRepository
+                .findAllIngredCategoriesByDishId(dishId).stream()
+                .map(c -> {
+                    IngredCategoryWithIngredsDto
+                            ingredCategoryWithIngredsDto =
+                            new IngredCategoryWithIngredsDto(c.getName(),
+                                    c.isAllowMultiple(),
+                                    ingredMapper.toNiceDtos(dishIngredRepository
+                                            .findAllIngredsInCategoryByDishId(
+                                                    dishId, c.getId())));
+                    return ingredCategoryWithIngredsDto;
+                })
+                .toList();
+    }
+
+    private List<DishWithSizeDto> findSideDihes() {
+        return sideDishRepository.findAll().stream()
+                .map(d -> d.getDishSizePrice())
+                .map(dishSizePriceMapper::toDishWithSizeDto)
                 .toList();
     }
 }

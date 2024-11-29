@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-categories-ingreds-table
+      author: Olya Starykova
+      changes:
+        - createTable:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_categories_ingreds_categories
+                    referencedTableName: categories
+                    referencedColumnNames: id
+                    nullable: false
+                    unique: true
+                    uniqueConstraintName: category_id-ingred_id_unique
+              - column:
+                  name: ingred_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_categories_ingreds_ingreds
+                    referencedTableName: ingreds
+                    referencedColumnNames: id
+                    nullable: false
+                    unique: true
+                    uniqueConstraintName: category_id-ingred_id_unique

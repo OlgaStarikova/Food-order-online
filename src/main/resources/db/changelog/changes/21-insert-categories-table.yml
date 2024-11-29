@@ -125,7 +125,7 @@ databaseChangeLog:
                   value: 6
               - column:
                   name: name
-                  value: Ще щось?
+                  value: А також
               - column:
                   name: sortnumber
                   value: 6

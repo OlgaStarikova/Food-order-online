@@ -14,7 +14,8 @@ public class DishNiceDto {
     private int timecook;
     private String description;
     private String imageSrc;
-    private List<DishSizePriceDto> dishSizePriceDtos;
-    private List<IngredNiceDto> defaultIngredDtos;
-    private List<IngredCategoryWithIngredsDto> categoryWithIngredsDtos;
+    private List<DishSizePriceDto> sizePriceOptions;
+    private List<IngredNiceDto> defaultOptions;
+    private List<IngredCategoryWithIngredsDto> ingredOptions;
 }
+

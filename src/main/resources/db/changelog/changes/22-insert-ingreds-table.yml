@@ -10,7 +10,7 @@ databaseChangeLog:
                   name: id
                   value: 1
               - column:
-                  name: name
+                  name: title
                   value: Класичний
               - column:
                   name: measure
@@ -28,7 +28,7 @@ databaseChangeLog:
                   name: id
                   value: 2
               - column:
-                  name: name
+                  name: title
                   value: Цільнозерновий
               - column:
                   name: measure
@@ -46,7 +46,7 @@ databaseChangeLog:
                   name: id
                   value: 3
               - column:
-                  name: name
+                  name: title
                   value: Класичне
               - column:
                   name: measure
@@ -64,7 +64,7 @@ databaseChangeLog:
                   name: id
                   value: 4
               - column:
-                  name: name
+                  name: title
                   value: Цільнозернове
               - column:
                   name: measure
@@ -82,7 +82,7 @@ databaseChangeLog:
                   name: id
                   value: 5
               - column:
-                  name: name
+                  name: title
                   value: Шоколадне
               - column:
                   name: measure
@@ -100,7 +100,7 @@ databaseChangeLog:
                   name: id
                   value: 6
               - column:
-                  name: name
+                  name: title
                   value: Безглютенове
               - column:
                   name: measure
@@ -118,7 +118,7 @@ databaseChangeLog:
                   name: id
                   value: 7
               - column:
-                  name: name
+                  name: title
                   value: Курка
               - column:
                   name: measure
@@ -136,7 +136,7 @@ databaseChangeLog:
                   name: id
                   value: 8
               - column:
-                  name: name
+                  name: title
                   value: Курка
               - column:
                   name: measure
@@ -154,7 +154,7 @@ databaseChangeLog:
                   name: id
                   value: 9
               - column:
-                  name: name
+                  name: title
                   value: Свинина
               - column:
                   name: measure
@@ -172,7 +172,7 @@ databaseChangeLog:
                   name: id
                   value: 10
               - column:
-                  name: name
+                  name: title
                   value: Мікс 50/50
               - column:
                   name: measure
@@ -190,7 +190,7 @@ databaseChangeLog:
                   name: id
                   value: 11
               - column:
-                  name: name
+                  name: title
                   value: Ковбаски
               - column:
                   name: measure
@@ -208,7 +208,7 @@ databaseChangeLog:
                   name: id
                   value: 12
               - column:
-                  name: name
+                  name: title
                   value: Пепероні
               - column:
                   name: measure
@@ -226,7 +226,7 @@ databaseChangeLog:
                   name: id
                   value: 13
               - column:
-                  name: name
+                  name: title
                   value: Червоний
               - column:
                   name: measure
@@ -244,7 +244,7 @@ databaseChangeLog:
                   name: id
                   value: 14
               - column:
-                  name: name
+                  name: title
                   value: Часниковий
               - column:
                   name: measure
@@ -262,7 +262,7 @@ databaseChangeLog:
                   name: id
                   value: 15
               - column:
-                  name: name
+                  name: title
                   value: Білий
               - column:
                   name: measure
@@ -280,7 +280,7 @@ databaseChangeLog:
                   name: id
                   value: 16
               - column:
-                  name: name
+                  name: title
                   value: Капуста,огірок,помідор
               - column:
                   name: measure
@@ -298,7 +298,7 @@ databaseChangeLog:
                   name: id
                   value: 17
               - column:
-                  name: name
+                  name: title
                   value: Картопля Фри
               - column:
                   name: measure
@@ -316,7 +316,7 @@ databaseChangeLog:
                   name: id
                   value: 18
               - column:
-                  name: name
+                  name: title
                   value: Сир
               - column:
                   name: measure
@@ -334,7 +334,7 @@ databaseChangeLog:
                   name: id
                   value: 19
               - column:
-                  name: name
+                  name: title
                   value: Червона цибуля
               - column:
                   name: measure
@@ -352,7 +352,7 @@ databaseChangeLog:
                   name: id
                   value: 20
               - column:
-                  name: name
+                  name: title
                   value: Перець червоний
               - column:
                   name: measure
@@ -370,7 +370,7 @@ databaseChangeLog:
                   name: id
                   value: 21
               - column:
-                  name: name
+                  name: title
                   value: Гриби
               - column:
                   name: measure
@@ -388,7 +388,7 @@ databaseChangeLog:
                   name: id
                   value: 22
               - column:
-                  name: name
+                  name: title
                   value: Кукурудза
               - column:
                   name: measure
@@ -406,7 +406,7 @@ databaseChangeLog:
                   name: id
                   value: 23
               - column:
-                  name: name
+                  name: title
                   value: Нутелла
               - column:
                   name: measure
@@ -424,7 +424,7 @@ databaseChangeLog:
                   name: id
                   value: 24
               - column:
-                  name: name
+                  name: title
                   value: Вишневий джем
               - column:
                   name: measure
@@ -442,7 +442,7 @@ databaseChangeLog:
                   name: id
                   value: 25
               - column:
-                  name: name
+                  name: title
                   value: Вершковий сир
               - column:
                   name: measure
@@ -460,7 +460,7 @@ databaseChangeLog:
                   name: id
                   value: 26
               - column:
-                  name: name
+                  name: title
                   value: Ванільний крем
               - column:
                   name: measure
@@ -478,7 +478,7 @@ databaseChangeLog:
                   name: id
                   value: 27
               - column:
-                  name: name
+                  name: title
                   value: Банан
               - column:
                   name: measure
@@ -496,7 +496,7 @@ databaseChangeLog:
                   name: id
                   value: 28
               - column:
-                  name: name
+                  name: title
                   value: Яблуко з корицею
               - column:
                   name: measure
@@ -514,7 +514,7 @@ databaseChangeLog:
                   name: id
                   value: 29
               - column:
-                  name: name
+                  name: title
                   value: Чорниця
               - column:
                   name: measure
@@ -532,7 +532,7 @@ databaseChangeLog:
                   name: id
                   value: 30
               - column:
-                  name: name
+                  name: title
                   value: Вершки
               - column:
                   name: measure
@@ -550,7 +550,7 @@ databaseChangeLog:
                   name: id
                   value: 31
               - column:
-                  name: name
+                  name: title
                   value: Горіхи
               - column:
                   name: measure
@@ -568,7 +568,7 @@ databaseChangeLog:
                   name: id
                   value: 32
               - column:
-                  name: name
+                  name: title
                   value: Шоколадний топпінг
               - column:
                   name: measure
@@ -586,7 +586,7 @@ databaseChangeLog:
                   name: id
                   value: 33
               - column:
-                  name: name
+                  name: title
                   value: Карамельний топпінг
               - column:
                   name: measure
@@ -604,7 +604,7 @@ databaseChangeLog:
                   name: id
                   value: 34
               - column:
-                  name: name
+                  name: title
                   value: Додатковий сир
               - column:
                   name: measure
@@ -622,7 +622,7 @@ databaseChangeLog:
                   name: id
                   value: 35
               - column:
-                  name: name
+                  name: title
                   value: Подвійна порція м'яса
               - column:
                   name: measure
@@ -640,7 +640,7 @@ databaseChangeLog:
                   name: id
                   value: 36
               - column:
-                  name: name
+                  name: title
                   value: Яловичина
               - column:
                   name: measure
@@ -658,7 +658,7 @@ databaseChangeLog:
                   name: id
                   value: 37
               - column:
-                  name: name
+                  name: title
                   value: Криветки
               - column:
                   name: measure
@@ -669,3 +669,21 @@ databaseChangeLog:
               - column:
                   name: ingredcategory_id
                   value: 3
+        - insert:
+            tableName: ingreds
+            columns:
+              - column:
+                  name: id
+                  value: 38
+              - column:
+                  name: title
+                  value: Подвійна порція курки
+              - column:
+                  name: measure
+                  value: 100г
+              - column:
+                  name: price
+                  value: 30
+              - column:
+                  name: ingredcategory_id
+                  value: 6

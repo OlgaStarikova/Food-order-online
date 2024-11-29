@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories-ingreds-table
+      author: Olya Starykova
+      changes:
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 17
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 34
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 37
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: ingred_id
+                  value: 22
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 17
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 38
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 21
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 35
+        - insert:
+            tableName: categories_ingreds
+            columns:
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: ingred_id
+                  value: 34
