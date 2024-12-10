@@ -1,10 +1,7 @@
 package com.service.foodorderonline.mapper;
 
 import com.service.foodorderonline.config.MapperConfig;
-import com.service.foodorderonline.dto.OrderItemDto;
 import com.service.foodorderonline.dto.OrderItemIngredDto;
-import com.service.foodorderonline.model.Ingred;
-import com.service.foodorderonline.model.OrderItem;
 import com.service.foodorderonline.model.OrderItemIngred;
 import java.util.List;
 import org.mapstruct.Mapper;
@@ -15,8 +12,9 @@ public interface OrderItemIngredMapper {
     OrderItemIngredDto toOrderItemIngredDto(OrderItemIngred orderItemIngred);
 
     @Mapping(source = "dish.id", target = "dishId")
-    List<OrderItemDto> toOrderItemDtos(List<OrderItem> orderItems);
+    List<OrderItemIngredDto> toOrderItemDtos(List<OrderItemIngred> orderItemIngreds);
 
-    @Mapping(source = "cartItem.ingreds", target = "orderItem.orderItemIngreds")
-    List<OrderItemIngred> toOrderItemIngredsFromCartItemIngreds(List<Ingred> ingreds);
+    /*@Mapping(source = "createOrderItemRequest.ingredIds", target = "orderItem.orderItemIngreds",
+    qualifiedByName = "orderitemsfromids")
+    List<OrderItemIngred> toModel(List<Long> ingredIds);*/
 }

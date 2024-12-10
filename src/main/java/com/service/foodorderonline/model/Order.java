@@ -3,8 +3,6 @@ package com.service.foodorderonline.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +16,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Getter
@@ -31,27 +33,75 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+    private String firstName;
+    private String secondName;
     @Column(nullable = false, unique = true, columnDefinition =
-            "enum('PENDING', 'COMPLETED', 'DELIVERED')")
-    @Enumerated(EnumType.STRING)
+            "status")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     private Status status = Status.PENDING;
+
+    @Column(nullable = false, unique = true, columnDefinition =
+            "expType")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private ExpType expectationTimeType = ExpType.FREE;
+
+    @Column(nullable = false, unique = true, columnDefinition =
+            "payType")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private PayType paymentType = PayType.GIVING;
+
+    private String expectHour;
+    private String expectMinute;
+
+    @Column(nullable = false, unique = true, columnDefinition =
+            "expDay")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private ExpDay day = ExpDay.TODAY;
+
     @Column(nullable = false)
     private BigDecimal total;
     @Column(nullable = false)
     private LocalDateTime orderDate = LocalDateTime.now();
     @Column(nullable = false)
     private String shippingAddress;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order",
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;
     @Column(nullable = false)
     private boolean isDeleted = false;
 
     public enum Status {
         PENDING,
-        COMPLETED,
-        DELIVERED
+        COOKING,
+        READY,
+        DELIVERED,
+        CANCELED
+    }
+
+    public enum ExpType {
+        CLEAR,
+        FREE
+    }
+
+    public enum PayType {
+        GIVING
+    }
+
+    public enum ExpDay {
+        TODAY,
+        TOMORROW
+    }
+
+    public BigDecimal countOrderTotal() {
+        return this.getOrderItems().stream()
+                .map(i -> i.getTotalItemPrice())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

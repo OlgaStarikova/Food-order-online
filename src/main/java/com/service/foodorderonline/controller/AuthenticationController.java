@@ -3,7 +3,6 @@ package com.service.foodorderonline.controller;
 import com.service.foodorderonline.dto.UserLoginRequestDto;
 import com.service.foodorderonline.dto.UserLoginResponseDto;
 import com.service.foodorderonline.dto.UserRegistrationRequestDto;
-import com.service.foodorderonline.dto.UserResponseDto;
 import com.service.foodorderonline.exception.RegistrationException;
 import com.service.foodorderonline.security.AuthenticationService;
 import com.service.foodorderonline.service.UserService;
@@ -27,7 +26,7 @@ public class AuthenticationController {
     @Operation(summary = "Register a new user", description = "Registration "
             + " a user for a access to data")
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request)
+    public UserLoginResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request)
             throws RegistrationException {
         return userService.register(request);
     }

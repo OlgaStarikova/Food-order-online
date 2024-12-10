@@ -53,3 +53,5 @@ databaseChangeLog:
       file: db/changelog/changes/26-create-side-dishes-table.yml
   - include:
       file: db/changelog/changes/27-insert-side-dishes-table.yml
+  - include:
+      file: db/changelog/changes/28-update-categories-table-add-constructor.yml

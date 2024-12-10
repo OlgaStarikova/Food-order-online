@@ -1,0 +1,40 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  update-categories-table-add-constructor
+       author:  Olya Starykova
+       changes:
+         - addColumn:
+             tableName: categories
+             columns:
+             - column:
+                 name: constructor_id
+                 type: bigint
+                 constraints:
+                   foreignKeyName: fk_categories_dishes
+                   referencedTableName: dishes
+                   referencedColumnNames: id
+                   nullable: true
+         -  update:
+              tableName: categories
+              columns:
+                -  column:
+                     name:  constructor_id
+                     value:  1
+              schemaName:  public
+              where:  id='1'
+         -  update:
+              tableName: categories
+              columns:
+                -  column:
+                     name:  constructor_id
+                     value:  6
+              schemaName:  public
+              where:  id='2'
+         -  update:
+              tableName: categories
+              columns:
+                -  column:
+                     name:  constructor_id
+                     value:  8
+              schemaName:  public
+              where:  id='3'

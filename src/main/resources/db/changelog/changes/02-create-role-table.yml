@@ -3,6 +3,7 @@ databaseChangeLog:
       id: create-role-table
       author: Olya Starykova
       changes:
+        - sql: CREATE TYPE rolename AS ENUM('USER','ADMIN','COOK')
         - createTable:
             tableName: roles
             columns:
@@ -15,7 +16,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: role
-                  type: enum('USER','ADMIN','COOK')
+                  type: rolename
                   constraints:
                     nullable: false
                     unique: true

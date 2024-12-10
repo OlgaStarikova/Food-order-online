@@ -24,6 +24,7 @@ public interface DishSizePriceMapper {
     @Mapping(source = "size.id", target = "sizeId")
     @Mapping(source = "dish.title", target = "title")
     @Mapping(source = "dish.imageSrc", target = "imageSrc")
+    @Mapping(source = "dish.id", target = "id")
     DishWithSizeDto toDishWithSizeDto(DishSizePrice dishSizePrice);
 
     @Mapping(source = "size", target = "title", qualifiedByName = "setSizeTitleDto")

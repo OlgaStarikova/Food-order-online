@@ -3,6 +3,10 @@ databaseChangeLog:
       id: create-orders-table
       author: Starykova Olga
       changes:
+        - sql: CREATE TYPE status AS ENUM('PENDING', 'COOKING', 'READY', 'DELIVERED', 'CANCELED')
+        - sql: CREATE TYPE expType AS ENUM('CLEAR','FREE')
+        - sql: CREATE TYPE payType AS ENUM('GIVING')
+        - sql: CREATE TYPE expDay AS ENUM('TODAY','TOMORROW')
         - createTable:
             tableName: orders
             columns:
@@ -23,7 +27,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: status
-                  type: enum('PENDING', 'COMPLETED', 'DELIVERED')
+                  type: status
                   constraints:
                     nullable: false
               - column:
@@ -34,6 +38,46 @@ databaseChangeLog:
               - column:
                   name: order_date
                   type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: second_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: phone
+                  type: varchar(15)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: expectation_time_type
+                  type: expType
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payment_type
+                  type: payType
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expect_hour
+                  type: varchar(2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: expect_minute
+                  type: varchar(2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: day
+                  type: expDay
                   constraints:
                     nullable: false
               - column:

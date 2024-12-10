@@ -33,10 +33,18 @@ databaseChangeLog:
                   name: quantity
                   type: int
               - column:
-                  name: total_item
+                  name: price
                   type: decimal(18,2)
                   constraints:
                     nullable: false
+              - column:
+                  name: total_item_price
+                  type: decimal(18,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(20)
               - column:
                   name: is_deleted
                   type: boolean

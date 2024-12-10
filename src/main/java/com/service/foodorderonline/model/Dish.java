@@ -35,8 +35,7 @@ public class Dish {
     private String description;
     private String imageSrc;
     @Column(nullable = false)
-    private boolean itConstructor = false
-            ;
+    private boolean itConstructor = false;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "category_id")
     private Category category;

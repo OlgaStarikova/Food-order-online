@@ -22,13 +22,14 @@ databaseChangeLog:
                     referencedColumnNames: id
                     nullable: false
               - column:
-                  name: ingred_name
+                  name: ingred_title
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
                   name: quantity
                   type: int
+                  defaultValueNumeric: 0
               - column:
                   name: price
                   type: decimal

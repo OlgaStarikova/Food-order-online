@@ -12,15 +12,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 @SQLDelete(sql = "UPDATE order_items SET is_deleted = TRUE WHERE id = ?")
 @SQLRestriction("is_deleted = FALSE")
 @Table(name = "order_items")
@@ -31,16 +33,32 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "order_id")
     private Order order;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(nullable = false, name = "dish_id")
-    private Dish dish;
+    private Long dishId;
     @Column(nullable = false)
     private int quantity;
-    @Column(name = "total_item", nullable = false)
-    private BigDecimal totalItem;
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OrderItemIngred> orderItemIngreds;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "total_item_price", nullable = false)
+    private BigDecimal totalItemPrice;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orderItem",
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItemIngred> orderItemIngreds;
     @Column(nullable = false)
     private boolean isDeleted = false;
+
+    public OrderItem(Long id) {
+        this.id = id;
+    }
+
+    public OrderItem() {
+    }
+
+    public BigDecimal countItemTotal() {
+        return this.getPrice().add(
+                this.getOrderItemIngreds().stream()
+                        .map(i -> i.getPrice())
+                        .reduce(BigDecimal.ZERO, BigDecimal::add));
+    }
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Getter;
@@ -41,6 +42,9 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "ingred_id")
     )
     private List<Ingred> ingreds;
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(nullable = false, name = "constructor_id")
+    private Dish constructor;
     @Column(nullable = false)
     private boolean isDeleted = false;
 

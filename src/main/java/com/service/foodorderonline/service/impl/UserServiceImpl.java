@@ -1,14 +1,15 @@
 package com.service.foodorderonline.service.impl;
 
+import com.service.foodorderonline.dto.UserLoginRequestDto;
+import com.service.foodorderonline.dto.UserLoginResponseDto;
 import com.service.foodorderonline.dto.UserRegistrationRequestDto;
-import com.service.foodorderonline.dto.UserResponseDto;
 import com.service.foodorderonline.exception.RegistrationException;
 import com.service.foodorderonline.mapper.UserMapper;
 import com.service.foodorderonline.model.Role;
 import com.service.foodorderonline.model.User;
 import com.service.foodorderonline.repository.role.RoleRepository;
 import com.service.foodorderonline.repository.user.UserRepository;
-import com.service.foodorderonline.service.CartService;
+import com.service.foodorderonline.security.AuthenticationService;
 import com.service.foodorderonline.service.UserService;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,10 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-    private final CartService cartService;
+    private final AuthenticationService authenticationService;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequestDto requestDto) {
+    public UserLoginResponseDto register(UserRegistrationRequestDto requestDto) {
         if (userRepository.existsByEmail(requestDto.email())) {
             throw new RegistrationException("The user with email "
                     + requestDto.email()
@@ -35,7 +36,8 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(requestDto.password()));
         user.setRoles(Set.of(roleRepository.getByRole(Role.RoleName.USER)));
         User savedUser = userRepository.save(user);
-        cartService.createShoppingCart(savedUser);
-        return userMapper.toDto(savedUser);
+        UserLoginRequestDto loginRequestDto = new UserLoginRequestDto(
+                requestDto.email(), requestDto.password());
+        return authenticationService.authenticate(loginRequestDto);
     }
 }

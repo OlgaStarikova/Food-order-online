@@ -30,7 +30,8 @@ public class OrderItemIngred {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "order_item_id")
     private OrderItem orderItem;
-    private String ingredName;
+    @Column(name = "ingred_title")
+    private String ingredTitle;
     @Column(nullable = false)
     private int quantity;
     @Column(nullable = false)

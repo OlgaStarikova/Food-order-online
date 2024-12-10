@@ -86,7 +86,7 @@ public class CategoryServiceImpl implements CategoryService {
                         "Can't find category by id " + id));
         return categoryMapper.toWithDishesDto(category).setDishesList(
                         findNotConstructorDishesByCategoryId(id))
-                .setConstructors(findConstructorDishesByCategoryId(id))
+                .setConstructor(findConstructorByCategoryId(id))
                 .setSideDishesList(findSideDihes());
     }
 
@@ -109,13 +109,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<DishNiceDto> findConstructorDishesByCategoryId(Long id) {
-        return dishRepository.findDishesByCategoryId(id).stream()
-                .filter(d -> d.isItConstructor() == true)
-                .map(dishMapper::toNiceDto)
-                .map(d -> d.setDefaultOptions(findDefaultOptions(d.getId()))
-                        .setIngredOptions(findIngredOptions(d.getId())))
-                .toList();
+    public DishNiceDto findConstructorByCategoryId(Long id) {
+        Long constructorId = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find category by id " + id)).getConstructor().getId();
+        return dishMapper.toNiceDto(
+                        dishRepository.findById(constructorId)
+                                .orElseThrow(() -> new EntityNotFoundException(
+                                        "Can't find dish by id " + constructorId)))
+                .setDefaultOptions(findDefaultOptions(constructorId))
+                .setIngredOptions(findIngredOptions(constructorId));
     }
 
     private List<IngredNiceDto> findDefaultOptions(Long dishId) {

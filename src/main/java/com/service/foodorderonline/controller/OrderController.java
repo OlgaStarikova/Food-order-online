@@ -21,17 +21,15 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Tag(name = "Order management", description = "Endpoints for managing orders")
-@RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
 
-    @GetMapping
+    @GetMapping("/user/orders")
     @Operation(summary = "Get orders for current user ", description = "Get orders"
             + "with order items. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
@@ -41,17 +39,16 @@ public class OrderController {
         return orderService.getOrdersByUser(user, pageable);
     }
 
-    @PostMapping
+    @PostMapping("/orders")
     @Operation(summary = "Create a new Order", description = "Create a new order. "
-            + "Available for registered users.")
-    @PreAuthorize("hasAuthority('USER')")
+            + "Available for all.")
     public OrderDto createOrder(Authentication authentication,
                                 @RequestBody @Valid CreateOrderRequestDto requestDto) {
-        User user = (User) authentication.getPrincipal();
-        return orderService.save(user, requestDto);
+        /*User user = (User) authentication.getPrincipal();*/
+        return orderService.save(authentication, requestDto);
     }
 
-    @PatchMapping("/{orderId}")
+    @PatchMapping("/admin/orders/{orderId}")
     @Operation(summary = "Update the order status", description = "Update the order by Id."
             + "Params: id = Id of the order. Available for users.")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -60,7 +57,7 @@ public class OrderController {
         return orderService.update(orderId, requestDto);
     }
 
-    @GetMapping("/{orderId}/items")
+    @GetMapping("/user/orders/{orderId}/items")
     @Operation(summary = "Get order items for current order ", description = "Get order items"
             + "for current order. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")
@@ -70,7 +67,7 @@ public class OrderController {
         return orderService.getOrderItems(user, orderId);
     }
 
-    @GetMapping("/{orderId}/items/{itemId}")
+    @GetMapping("/user/orders/{orderId}/items/{itemId}")
     @Operation(summary = "Get order items for current order ", description = "Get order items"
             + "for current order. Available for registered users.")
     @PreAuthorize("hasAuthority('USER')")

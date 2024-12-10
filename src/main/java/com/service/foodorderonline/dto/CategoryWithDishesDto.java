@@ -14,6 +14,6 @@ public class CategoryWithDishesDto {
     private String name;
     private List<IngredNiceDto> additionalOptions;
     private List<DishNiceDto> dishesList;
-    private List<DishNiceDto> constructors;
+    private DishNiceDto constructor;
     private List<DishWithSizeDto> sideDishesList;
 }

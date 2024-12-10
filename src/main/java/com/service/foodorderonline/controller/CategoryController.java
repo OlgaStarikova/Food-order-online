@@ -65,8 +65,8 @@ public class CategoryController {
     @GetMapping("/categories/{id}/disheslist")
     @Operation(summary = "Get dishes with sizes and prices in the category",
             description = "Get dishes with sizes and prices in the category"
-            + " by Id of category. "
-            + "Params: id = Id of the category. Available for all.")
+                    + " by Id of category. "
+                    + "Params: id = Id of the category. Available for all.")
     List<DishWithSizesDto> getDishesListByCategoryId(@PathVariable Long id) {
         return categoryService.findDihesByCategoryId(id);
     }
@@ -74,10 +74,10 @@ public class CategoryController {
     @GetMapping("/categories/{id}/constructor")
     @Operation(summary = "Get constructor in the category",
             description = "Get dishes in the category"
-            + " by Id of category. "
-            + "Params: id = Id of the category. Available for all.")
-    List<DishNiceDto> getConstructorDishesByCategoryId(@PathVariable Long id) {
-        return categoryService.findConstructorDishesByCategoryId(id);
+                    + " by Id of category. "
+                    + "Params: id = Id of the category. Available for all.")
+    DishNiceDto getConstructorDishesByCategoryId(@PathVariable Long id) {
+        return categoryService.findConstructorByCategoryId(id);
     }
 
     @GetMapping("/categories/{id}/dishes")

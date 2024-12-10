@@ -246,6 +246,9 @@ databaseChangeLog:
               - column:
                   name: selected
                   value: 1
+              - column:
+                  name: disabled
+                  value: 1
         - insert:
             tableName: dishes_ingreds
             columns:

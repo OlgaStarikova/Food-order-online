@@ -28,6 +28,6 @@ public interface CategoryService {
 
     List<DishNiceDto> findNotConstructorDishesByCategoryId(Long id);
 
-    List<DishNiceDto> findConstructorDishesByCategoryId(Long id);
+    DishNiceDto findConstructorByCategoryId(Long id);
 
 }

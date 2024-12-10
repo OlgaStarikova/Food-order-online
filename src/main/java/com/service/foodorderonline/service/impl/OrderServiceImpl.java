@@ -5,21 +5,19 @@ import com.service.foodorderonline.dto.OrderDto;
 import com.service.foodorderonline.dto.OrderItemDto;
 import com.service.foodorderonline.dto.UpdateOrderRequestDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
-import com.service.foodorderonline.exception.OrderProcessingException;
 import com.service.foodorderonline.mapper.OrderItemMapper;
 import com.service.foodorderonline.mapper.OrderMapper;
 import com.service.foodorderonline.model.Order;
 import com.service.foodorderonline.model.OrderItem;
-import com.service.foodorderonline.model.ShoppingCart;
 import com.service.foodorderonline.model.User;
-import com.service.foodorderonline.repository.order.CartItemRepository;
 import com.service.foodorderonline.repository.order.OrderItemRepository;
 import com.service.foodorderonline.repository.order.OrderRepository;
-import com.service.foodorderonline.repository.order.ShoppingCartRepository;
+import com.service.foodorderonline.repository.user.UserRepository;
 import com.service.foodorderonline.service.OrderService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,28 +25,53 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
+    private static final Long DEFAULT_USER_ID = 2L;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final OrderMapper orderMapper;
     private final OrderItemMapper orderItemMapper;
-    private final ShoppingCartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
-    public OrderDto save(User user, CreateOrderRequestDto requestDto) {
-        ShoppingCart cart = cartRepository.findShoppingCartByUserId(user.getId());
-        if (cart.getCartItems().isEmpty()) {
-            throw new OrderProcessingException("Cart is empty for user: " + user.getEmail());
+    public OrderDto save(Authentication authentication, CreateOrderRequestDto requestDto) {
+        User user;
+        if (authentication == null) {
+            user = userRepository.findById(DEFAULT_USER_ID)
+                    .orElseThrow(() -> new EntityNotFoundException("Not possible"
+                            + "to make order without registration"));
+        } else {
+            user = (User) authentication.getPrincipal();
         }
-        Order order = orderMapper.cartToOrder(cart, requestDto.shippingAddress());
-        order.getOrderItems().replaceAll(i -> {
-            i.setOrder(order);
-            return i;
-        });
+
+        Order order = orderMapper.toOrder(requestDto);
+        order.setUser(user);
+
+        for (OrderItem orderItem : order.getOrderItems()) {
+            orderItem.setOrder(order);
+        }
+
+        order.getOrderItems()
+                .stream()
+                .map(o -> {
+                    o.getOrderItemIngreds().stream()
+                            .map(i -> i.setOrderItem(o));
+                    return o;
+                });
+
+        /*List<OrderItem> list = orderItemMapper
+                .toModelFromSideItemRequests(requestDto.additionalList());
+        List<OrderItemIngred> emptyIngreds = new ArrayList<OrderItemIngred>();
+        for (OrderItem sideItem : list) {
+            sideItem.setOrder(order);
+            sideItem.setOrderItemIngreds(emptyIngreds);
+            List<OrderItem> newList = order.getOrderItems();
+            newList.add(sideItem);
+            order.setOrderItems(newList);
+        }*/
+
         Order orderSaved = orderRepository.save(order);
-        cartItemRepository.deleteAllByShoppingCartId(cart.getId());
-        cart.clearCart();
+
         return orderMapper.toOrderDto(orderSaved);
     }
 

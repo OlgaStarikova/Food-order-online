@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 public record OrderItemIngredDto(
         Long id,
         Long orderItemId,
+        String ingredTitle,
         int quantity,
         BigDecimal price
 ) {
