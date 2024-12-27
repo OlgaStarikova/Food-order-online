@@ -69,6 +69,10 @@ public class Order {
     private BigDecimal total;
     @Column(nullable = false)
     private LocalDateTime orderDate = LocalDateTime.now();
+    private LocalDateTime timeClear;
+    private LocalDateTime timeSchedule;
+    private LocalDateTime timeStart;
+    private LocalDateTime timeEnd;
     @Column(nullable = false)
     private String shippingAddress;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order",
@@ -103,5 +107,19 @@ public class Order {
         return this.getOrderItems().stream()
                 .map(i -> i.getTotalItemPrice())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public Long countOrderTimeCook() {
+        return Long.valueOf(this.getOrderItems().stream()
+                .map(i -> i.getItemTimeCook())
+                .reduce(0, (a, b) -> a + b));
+    }
+
+    public LocalDateTime calcTimeScheduleEnd() {
+        if (this.getTimeSchedule() == null) {
+            return LocalDateTime.now().plusMinutes(this.countOrderTimeCook());
+        }
+
+        return this.getTimeSchedule().plusMinutes(this.countOrderTimeCook());
     }
 }

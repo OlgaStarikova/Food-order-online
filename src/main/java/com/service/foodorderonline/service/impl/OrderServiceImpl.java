@@ -14,6 +14,11 @@ import com.service.foodorderonline.repository.order.OrderItemRepository;
 import com.service.foodorderonline.repository.order.OrderRepository;
 import com.service.foodorderonline.repository.user.UserRepository;
 import com.service.foodorderonline.service.OrderService;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -69,9 +74,20 @@ public class OrderServiceImpl implements OrderService {
             newList.add(sideItem);
             order.setOrderItems(newList);
         }*/
+        List<Order> listSchedule = orderRepository.findAllByStatus(Order.Status.PENDING);
+        List<Order> listCooking = orderRepository.findAllByStatus(Order.Status.COOKING);
+        listSchedule.addAll(listCooking);
+        LocalDateTime timeToAbble = LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 10));
+        Duration duration = Duration.ofMinutes(20L);
 
+        LocalDateTime lastTimeSchedule = listSchedule.stream()
+                .filter(o -> o.getDay() == Order.ExpDay.TODAY)
+                .max(Comparator.comparing(Order::calcTimeScheduleEnd))
+                .orElse(order)
+                .calcTimeScheduleEnd();
+
+        order.setTimeSchedule(lastTimeSchedule);
         Order orderSaved = orderRepository.save(order);
-
         return orderMapper.toOrderDto(orderSaved);
     }
 

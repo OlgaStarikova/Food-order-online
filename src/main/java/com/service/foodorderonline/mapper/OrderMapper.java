@@ -2,6 +2,7 @@ package com.service.foodorderonline.mapper;
 
 import com.service.foodorderonline.config.MapperConfig;
 import com.service.foodorderonline.dto.CreateOrderRequestDto;
+import com.service.foodorderonline.dto.OrderCurrentDto;
 import com.service.foodorderonline.dto.OrderDto;
 import com.service.foodorderonline.dto.OrderItemDto;
 import com.service.foodorderonline.model.Order;
@@ -24,13 +25,22 @@ public interface OrderMapper {
     @Mapping(source = "status", target = "status", qualifiedByName = "getStatus")
     @Mapping(source = "orderItems", target = "orderItemDtos", qualifiedByName =
             "mapOrderItemsToOrderItemDtos")
-    @Mapping(target = "time", ignore = true, defaultValue = "00:00")
+    @Mapping(target = "time", source = "timeSchedule", qualifiedByName =
+            "convertToShortTime")
     OrderDto toOrderDto(Order order);
 
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "orderItems", target = "orderItemDtos", qualifiedByName =
             "mapOrderItemsToOrderItemDtos")
+    @Mapping(target = "time", source = "timeSchedule", qualifiedByName =
+            "convertToShortTime")
     List<OrderDto> toOrdersDto(List<Order> orders);
+
+    @Mapping(source = "status", target = "status", qualifiedByName = "getStatus")
+    OrderCurrentDto toOrderCurrentDto(Order order);
+
+    @Mapping(source = "status", target = "status", qualifiedByName = "getStatus")
+    List<OrderCurrentDto> toOrderCurrentsDto(List<Order> orders);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "orderItems", source = "cartItems", qualifiedByName =

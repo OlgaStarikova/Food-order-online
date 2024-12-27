@@ -81,6 +81,26 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: time_clear
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_schedule
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_start
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_end
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
                   name: shipping_address
                   type: varchar(255)
               - column:

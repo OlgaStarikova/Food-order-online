@@ -23,12 +23,12 @@ public interface OrderItemMapper {
 
     OrderItem toModel(CreateOrderItemRequestDto requestDto);
 
-    @Mapping(target = "dishId", source = "id")
+    @Mapping(target = "dish.id", source = "id")
     @Mapping(target = "orderItemIngreds", ignore = true, defaultValue = "new ArrayList<>()")
     @Mapping(target = "totalItemPrice", source = "price")
     OrderItem toModelFromSideItemRequest(CreateOrderSideItemRequestDto requestDto);
 
-    @Mapping(target = "dishId", source = "id")
+    @Mapping(target = "dish.id", source = "id")
     @Mapping(target = "orderItemIngreds",ignore = true, defaultValue = "new ArrayList<>()")
     @Mapping(target = "totalItemPrice", source = "price")
     List<OrderItem> toModelFromSideItemRequests(List<CreateOrderSideItemRequestDto> requestDto);

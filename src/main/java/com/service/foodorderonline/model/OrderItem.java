@@ -33,7 +33,9 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false, name = "order_id")
     private Order order;
-    private Long dishId;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(nullable = false, name = "dish_id")
+    private Dish dish;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "price", nullable = false)
@@ -60,5 +62,9 @@ public class OrderItem {
                 this.getOrderItemIngreds().stream()
                         .map(i -> i.getPrice())
                         .reduce(BigDecimal.ZERO, BigDecimal::add));
+    }
+
+    public int getItemTimeCook() {
+        return this.getDish().getTimecook();
     }
 }

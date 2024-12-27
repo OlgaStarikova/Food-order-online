@@ -44,7 +44,6 @@ public class OrderController {
             + "Available for all.")
     public OrderDto createOrder(Authentication authentication,
                                 @RequestBody @Valid CreateOrderRequestDto requestDto) {
-        /*User user = (User) authentication.getPrincipal();*/
         return orderService.save(authentication, requestDto);
     }
 

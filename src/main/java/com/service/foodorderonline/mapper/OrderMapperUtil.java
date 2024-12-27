@@ -5,12 +5,15 @@ import com.service.foodorderonline.dto.CreateOrderSideItemRequestDto;
 import com.service.foodorderonline.dto.OrderItemDto;
 import com.service.foodorderonline.dto.OrderItemIngredDto;
 import com.service.foodorderonline.exception.EntityNotFoundException;
+import com.service.foodorderonline.model.Dish;
 import com.service.foodorderonline.model.Ingred;
 import com.service.foodorderonline.model.Order;
 import com.service.foodorderonline.model.OrderItem;
 import com.service.foodorderonline.model.OrderItemIngred;
 import com.service.foodorderonline.repository.IngredRepository;
+import com.service.foodorderonline.repository.dish.DishRepository;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Component;
 public class OrderMapperUtil {
     private static final int DEFAULT_QUANTITY_OF_INGRED = 1;
     private final IngredRepository ingredRepository;
+    private final DishRepository dishRepository;
 
     @Named("ingredIdToOrderItemIngred")
     OrderItemIngred mapIngredIdToOrderItemIngred(OrderItem orderItem, Long ingredId) {
@@ -49,11 +53,18 @@ public class OrderMapperUtil {
     public OrderItem mapCartItemRequestToOrderItem(CreateOrderItemRequestDto requestDto) {
         OrderItem orderItem = new OrderItem().setPrice(requestDto.price())
                 .setQuantity(requestDto.count())
-                .setTitle(requestDto.title())
-                .setDishId(requestDto.dishId());
+                .setTitle(requestDto.title());
+
         orderItem.setOrderItemIngreds(mapIngredIdsToOrderItemIngreds(orderItem,
                 requestDto.ingredIds()));
+
         orderItem.setTotalItemPrice(orderItem.countItemTotal());
+
+        Dish dish = dishRepository.findById(requestDto.dishId())
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Not found dish by dishId = " + requestDto.dishId())
+                );
+        orderItem.setDish(dish);
         return orderItem;
     }
 
@@ -85,7 +96,7 @@ public class OrderMapperUtil {
     private OrderItemDto mapOrderItemToOrderItemDto(OrderItem item) {
         return new OrderItemDto(
                 item.getId(),
-                item.getDishId(),
+                item.getDish().getId(),
                 item.getQuantity(),
                 item.getTitle(),
                 item.getTotalItemPrice(),
@@ -103,8 +114,7 @@ public class OrderMapperUtil {
     public OrderItem mapSideItemRequestToOrderItem(CreateOrderSideItemRequestDto requestDto) {
         OrderItem orderItem = new OrderItem().setPrice(requestDto.price())
                 .setQuantity(requestDto.quantity())
-                .setTitle(requestDto.title())
-                .setDishId(requestDto.id());
+                .setTitle(requestDto.title());
         orderItem.setOrderItemIngreds(new ArrayList<>());
         orderItem.setTotalItemPrice(requestDto.price());
         return orderItem;
@@ -128,5 +138,14 @@ public class OrderMapperUtil {
     @Named("getStatus")
     public String getStatus(Order.Status status) {
         return status.toString();
+    }
+
+    @Named("convertToShortTime")
+    public String convertToShortTime(LocalDateTime localDateTime) {
+        int hour = localDateTime.getHour();
+        int min = localDateTime.getMinute();
+        String stringHour = (hour < 10) ? "0" : "" + String.valueOf(hour);
+        String stringMin = (min < 10) ? "0" : "" + String.valueOf(min);
+        return stringHour + ":" + stringMin;
     }
 }
